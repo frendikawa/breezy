@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 Route::group(['middleware' => ['auth', 'role: admin']], function(){
-
+    return 'admin';
 }); 
 
 Auth::routes();
