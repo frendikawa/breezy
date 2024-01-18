@@ -18,10 +18,6 @@ class UserAccess
     {
         if(Auth()->user()->role == 'admin'){
             return $next($request);
-        } else if (Auth()) {
-            return to_route('home');
-        } else {
-            return to_route('');
         }
     }
 }
