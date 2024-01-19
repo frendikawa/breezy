@@ -28,11 +28,13 @@ Route::group(['middleware' => ['auth', 'role: admin']], function(){
     return 'admin';
 }); 
 
-Auth::routes();
+Auth::routes([
+    'verify'=>true
+]);
 
 Route::get('home', function () {
     return view('home');
-})->name('home');
+})->name('home')->middleware('verified');
 
 Route::get('category', function () {
     return view('category');
