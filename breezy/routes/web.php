@@ -34,7 +34,6 @@ Route::get('home', function () {
     return view('home');
 })->name('home');
 
-
 Route::get('category', function () {
     return view('category');
 })->name('category');
