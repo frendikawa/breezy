@@ -34,7 +34,7 @@
             <div style="width: 100vw">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <img src="{{ asset('img/logo.png') }}" width="150px" style="padding: 10px;">
-                    <div class="collapse navbar-collapse justify-content-between" style="width: 30vw" id="navbarCollapse">
+                    <div class="collapse navbar-collapse justify-content-between px-5" style="width: 30vw" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ route('home') }}" class="nav-item nav-link active">Beranda</a>
                             <a href="{{ route('product') }}" class="nav-item nav-link">Produk</a>
@@ -60,11 +60,6 @@
                                 </div>
                             </form>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="" class="btn px-0" style="position: relative; left: 10px;">
-                                    <i class="fas fa-heart text-primary"></i>
-                                    <span class="badge text-secondary border border-secondary rounded-circle"
-                                        style="padding-bottom: 2px;">0</span>
-                                </a>
                                 <a href="" class="btn px-0 ml-3">
                                     <i class="fas fa-shopping-cart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle"
