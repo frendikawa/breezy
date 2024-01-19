@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::all();
+        return view('product',compact('products'));
     }
 
     /**
@@ -27,7 +29,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required',
+            'stock'=>'required',
+        ],[
+            'name.required'=>'Nama tidak boleh kosong',
+            'description.required'=>'Deskripsi tidak boleh kosong',
+            'price.required'=>'Harga tidak boleh kosong',
+            'stock.required'=>'Stock tidak boleh kosong',
+        ]);
+        $data=[
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'price'=>$request->price,
+            'stock'=>$request->stock,
+        ];
+
+        Product::create($data);
+        return redirect()->back()->with('success','Produk berhasil ditambahkan');
     }
 
     /**
@@ -51,7 +72,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product=Product::find($id);
+        $request->validate([
+            'description'=>'required',
+            'stock'=>'required',
+        ]);
+        $data=[
+            'description'=>$request->description,
+            'stock'=>$request->stock
+        ];
+        $product->update($data);
+        return redirect()->back()->with('success','berhasil melakukan update produk');
     }
 
     /**

@@ -44,9 +44,11 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::get('product', function () {
-    return view('product');
-})->name('product');
+// Route::get('product', function () {
+//     return view('product');
+// })->name('product');
+
+Route::resource('product',ProductController::class);
 
 // Route::resource('product',ProductController::class);
 // Route::resource('category',CategoryController::class);

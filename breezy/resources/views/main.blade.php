@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -24,29 +26,38 @@
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
     <!-- Navbar Start -->
     <div class="container-fluid bg-light mb-30">
-        <div class="row px-xl-5">   
+        <div class="row px-xl-5">
             <div style="width: 100vw">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <img src="{{ asset('img/logo.png') }}" width="150px" style="padding: 10px;">
-                    <div class="collapse navbar-collapse justify-content-between px-5" style="width: 30vw" id="navbarCollapse">
+                    <div class="collapse navbar-collapse justify-content-between px-5" style="width: 30vw"
+                        id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ route('home') }}" class="nav-item nav-link active">Beranda</a>
-                            <a href="{{ route('product') }}" class="nav-item nav-link">Produk</a>
+                            <a href="{{ route('home') }}"
+                                class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
+                            <a href="{{ route('product.index') }}"
+                                class="nav-item nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">Produk</a>
                             <div class="nav-item dropdown">
-                                <a href="{{ route('category') }}" class="nav-link dropdown-toggle" data-toggle="dropdown">Kategori <i class="fa fa-angle-down mt-1"></i></a>
+                                <a href="{{ route('category') }}" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown">Kategori <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     {{-- @foreach ($categories as $item)
                                         <a href="" class="dropdown-item">{{ $item->name }}</a>
                                     @endforeach --}}
                                 </div>
                             </div>
-                            <a href="{{ route('contact') }}" class="nav-item nav-link">Kontak kami</a>
+                            <a href="{{ route('contact') }}"
+                                class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak
+                                kami</a>
                         </div>
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
@@ -68,7 +79,8 @@
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
                                         <a href="">
-                                            <i class="fa-solid fa-circle-user" style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                                            <i class="fa-solid fa-circle-user"
+                                                style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
                                         </a>
                                     @else
                                         <a href="{{ route('login') }}" class="btn btn-warning">Masuk</a>
@@ -105,8 +117,7 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
                                 Shop</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
@@ -182,8 +193,8 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> --}}
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
@@ -193,33 +204,42 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
-          <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+<div class="col-md-6 px-xl-0 text-center text-md-right">
+    <img class="img-fluid" src="img/payments.png" alt="">
+</div>
+</div>
+</div>
+<!-- Footer End -->
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
-    <script src="{{ asset('mail/contact.js') }}"></script>
+<!-- Contact Javascript File -->
+<script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
+<script src="{{ asset('mail/contact.js') }}"></script>
 
-    <!-- Template Javascript -->
-    <script src="{{ asset('js/main.js') }}"></script>
+<!-- Template Javascript -->
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>
