@@ -26,8 +26,12 @@
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
+<<<<<<< Updated upstream
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+=======
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+>>>>>>> Stashed changes
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -42,6 +46,7 @@
                     <div class="collapse navbar-collapse justify-content-between px-5" style="width: 30vw"
                         id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
+<<<<<<< Updated upstream
                             <a href="{{ route('home') }}"
                                 class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
                             <a href="{{ route('product.index') }}"
@@ -50,14 +55,28 @@
                                 <a href="{{ route('category') }}" class="nav-link dropdown-toggle"
                                     data-toggle="dropdown">Kategori <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+=======
+                            <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
+                            <a href="{{ route('product') }}" class="nav-item nav-link {{ request()->routeIs('product') ? 'active' : '' }}">Produk</a>
+                            <div class="nav-item dropdown">
+                                <a href="" style="cursor: default" class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
+                                <div class="dropdown-content">
+>>>>>>> Stashed changes
                                     {{-- @foreach ($categories as $item)
                                         <a href="" class="dropdown-item">{{ $item->name }}</a>
                                     @endforeach --}}
+                                  <a href="{{ route('category') }}" >Baju</a>
+                                  <a href="#" >Graphic Design</a>
+                                  <a href="#" >SEO</a>
                                 </div>
                             </div>
+<<<<<<< Updated upstream
                             <a href="{{ route('contact') }}"
                                 class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak
                                 kami</a>
+=======
+                            <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak kami</a>
+>>>>>>> Stashed changes
                         </div>
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
@@ -193,8 +212,14 @@
 
 
     <!-- JavaScript Libraries -->
+<<<<<<< Updated upstream
     {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> --}}
+=======
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+>>>>>>> Stashed changes
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 

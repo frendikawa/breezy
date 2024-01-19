@@ -9722,3 +9722,24 @@ a.text-dark:hover, a.text-dark:focus {
 .cat-item:hover .cat-count{
   color: #fff;
 }
+
+.dropdown {
+  position: relative;
+}
+.dropdown a:hover{
+  text-decoration: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content, .dropdown-content a{
+  display: block;
+  z-index: 800;
+  width: max-content;
+  padding: 10px 10px;
+}
