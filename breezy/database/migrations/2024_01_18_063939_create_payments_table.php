@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained();
             $table->enum('method',['cash','cashless'])->default('cash');
-            $table->integer('total');
+            $table->integer('proof')->nullable();
             $table->timestamps();
         });
     }
