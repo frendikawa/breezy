@@ -19,6 +19,12 @@
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-eye"></i>
                                 </button>
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-dark btn-square"><i
+                                            class="fa fa-trash"></i></button>
+                                </form>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -49,8 +55,8 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,7 +65,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('product.update',$product->id) }}" method="POST">
+                                <form action="{{ route('product.update', $product->id) }}" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="card">
@@ -67,7 +73,8 @@
                                             <label for="" class="form-label">Deskripsi</label>
                                             <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
                                             <label for="" class="form-label">Stock</label>
-                                            <input type="number" name="stock" id="" class="form-control" value="{{$product->stock}}">
+                                            <input type="number" name="stock" id="" class="form-control"
+                                                value="{{ $product->stock }}">
                                         </div>
                                     </div>
                             </div>
