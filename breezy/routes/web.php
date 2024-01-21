@@ -49,3 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('payment',PaymentController::class);
     Route::resource('review',ReviewController::class);
 });
+
+Route::get('/login1', function() {
+    return view('login');
+})->name('login');
+Route::get('/register1', function() {
+    return view('register');
+})->name('register');
