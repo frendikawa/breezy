@@ -6,6 +6,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TroliController;
 use Illuminate\Support\Facades\Auth;
@@ -41,12 +42,8 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
-<<<<<<< Updated upstream
-Route::middleware(['auth', 'verified'])->group(function () {
-=======
 
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
->>>>>>> Stashed changes
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
     Route::resource('delivery',DeliveryController::class);
@@ -54,6 +51,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('payment',PaymentController::class);
     Route::resource('review',ReviewController::class);
     Route::resource('troli',TroliController::class);
+    route::resource('profil',ProfilController::class);
 });
 
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
