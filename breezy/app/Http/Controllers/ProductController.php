@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -12,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
-        return view('product',compact('products'));
+        $products = Product::all();
+        return view('product', compact('products'));
     }
 
     /**
@@ -27,28 +29,22 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'price'=>'required',
-            'stock'=>'required',
-        ],[
-            'name.required'=>'Nama tidak boleh kosong',
-            'description.required'=>'Deskripsi tidak boleh kosong',
-            'price.required'=>'Harga tidak boleh kosong',
-            'stock.required'=>'Stock tidak boleh kosong',
-        ]);
-        $data=[
-            'name'=>$request->name,
-            'description'=>$request->description,
-            'price'=>$request->price,
-            'stock'=>$request->stock,
+
+
+        $file = Storage::put('photo', $request->file('photo'));
+
+        $data = [
+            'name' => $request->name,
+            'photo' => $file,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
         ];
 
         Product::create($data);
-        return redirect()->back()->with('success','Produk berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
     }
 
     /**
@@ -72,17 +68,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
+
         $request->validate([
-            'description'=>'required',
-            'stock'=>'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
         ]);
-        $data=[
-            'description'=>$request->description,
-            'stock'=>$request->stock
+
+        // Periksa apakah ada file foto yang diunggah
+        if ($request->hasFile('photo')) {
+            // Jika ada file baru, simpan foto baru dan hapus foto lama
+            $file = Storage::put('photo', $request->file('photo'));
+            Storage::disk('public')->delete($product->photo);
+        } else {
+            // Jika tidak ada file baru, gunakan foto lama
+            $file = $product->photo;
+        }
+
+        $data = [
+            'name' => $request->name,
+            'photo' => $file,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
         ];
+
         $product->update($data);
-        return redirect()->back()->with('success','berhasil melakukan update produk');
+        return redirect()->back()->with('success', 'Berhasil update data');
     }
 
     /**
@@ -90,8 +104,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product=Product::find($id);
+        $product = Product::find($id);
         $product->delete();
-        return redirect()->back()->with('success','Berhasil menghapus produk');
+        return redirect()->back()->with('success', 'Berhasil menghapus produk');
     }
 }

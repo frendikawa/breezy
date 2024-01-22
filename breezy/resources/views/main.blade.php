@@ -77,7 +77,7 @@
                                     @if (Auth::check())
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
-                                            <button type="submit">Keluar</button>
+                                            <button type="submit" class="btn btn-primary">Keluar</button>
                                         </form>
                                     <a href="">
                                             <i class="fa-solid fa-circle-user"
