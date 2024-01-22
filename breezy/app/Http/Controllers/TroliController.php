@@ -12,7 +12,7 @@ class TroliController extends Controller
      */
     public function index()
     {
-        //
+        return view('troli');
     }
 
     /**

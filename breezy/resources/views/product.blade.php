@@ -12,7 +12,7 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i
+                                <a class="btn btn-outline-dark btn-square" href="{{route('troli.index')}}"><i
                                         class="fa fa-shopping-cart"></i></a>
                                 <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
                                     data-bs-target="#detail{{ $product->id }}">

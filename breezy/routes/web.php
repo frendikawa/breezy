@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TroliController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,6 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
@@ -48,4 +48,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('detail',DetailController::class);
     Route::resource('payment',PaymentController::class);
     Route::resource('review',ReviewController::class);
+    Route::resource('troli',TroliController::class);
 });
