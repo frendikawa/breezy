@@ -46,12 +46,9 @@
                             <div class="nav-item dropdown">
                                 <a href="{{ route('category.index') }}" style="cursor: default" class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
                                 <div class="dropdown-content">
-                                    {{-- @foreach ($categories as $item)
-                                        <a href="" class="dropdown-item">{{ $item->name }}</a>
-                                    @endforeach --}}
-                                  <a href="" >Baju</a>
-                                  <a href="#" >Graphic Design</a>
-                                  <a href="#" >SEO</a>
+                                    @foreach (DB::table('categories')->get() as $item)
+                                        <a href="">{{ $item->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                             <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak kami</a>
@@ -110,11 +107,10 @@
     <div class="container-fluid bg-light text-secondary mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-                <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed
-                    dolor. Rebum tempor no vero est magna amet no</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <h5 class="text-secondary text-uppercase mb-4">Halo Breelove</h5>
+                <p class="mb-4">Breezy! Keindahan, keunikan, dan ketelitian dalam setiap sentuhan. Seni yang memikat, produk yang mempesona.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kepanjen, Malang</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>Breezy@gmail.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
             <div class="col-lg-8 col-md-12">
@@ -122,39 +118,22 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
-                                Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
-                                Us</a>
+                            <a class="text-secondary mb-2" href="{{ route('home') }}"><i class="fa fa-angle-right mr-2"></i>Beranda</a>
+                            <a class="text-secondary mb-2" href="{{ route('product.index') }}"><i class="fa fa-angle-right mr-2"></i>Produk kami</a>
+                            <a class="text-secondary mb-2" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>Kontak kami</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
+                        <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our
-                                Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop
-                                Detail</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact
-                                Us</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Lihat akun</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="{{ route('logout') }}"><i class="fa fa-angle-right mr-2"></i>Keluar</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                        <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
+                        <h5 class="text-secondary text-uppercase mb-4">Tuliskan pesan</h5>
+                        <p>Masukan anda, adalah inspirasi kami</p>
                         <form action="">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Your Email Address">

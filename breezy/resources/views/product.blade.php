@@ -93,9 +93,11 @@
 
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Tambah Produk
-            </button>
+            @if (Auth::check() && Auth()->user()->role == 'admin')
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Tambah Produk
+                </button>
+            @endif
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

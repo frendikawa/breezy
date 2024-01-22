@@ -5,9 +5,11 @@
     <div class="container-fluid pt-5">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
             <span class="bg-secondary pr-3">Daftar Kategori</span>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory" style="position: absolute; left:79vw;">
-                Kategori baru
-            </button>
+            @if (Auth::check() && Auth()->user()->role == 'admin')
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory" style="position: absolute; left:79vw;">
+                    Kategori baru
+                </button>
+            @endif
         </h2>
         <div class="container">
             <table class="table">
@@ -24,12 +26,14 @@
                             <th scope="row">{{ ++$key }}</th>
                             <td>{{ $item->name }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
+                                @if (Auth::check() && Auth()->user()->role == 'admin')
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                @endif
                             </td>
                         </tr>
 
