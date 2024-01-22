@@ -41,12 +41,8 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
-<<<<<<< Updated upstream
-Route::middleware(['auth', 'verified'])->group(function () {
-=======
 
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
->>>>>>> Stashed changes
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
     Route::resource('delivery',DeliveryController::class);
