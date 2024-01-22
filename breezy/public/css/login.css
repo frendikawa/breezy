@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.pembungkus{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top: 6vw;
+    left: 10vw;
+    padding: 6vw 10vw;
+    width: 80vw;
+}
+.left img{
+    position: relative;
+    top: 4vw;
+}
+.right{
+    padding: 0 0 0 8vw;
+}
+.active{
+    text-decoration: none;
+    color: #1A5295;
+    font-weight: 700;
+}
+.right .form-floating input{
+    width: 30vw;
+}
+.pembungkus.regis{
+    top: 4vw;
+}
+.pembungkus.regis img{
+    top: 7vw;
+}

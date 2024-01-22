@@ -21,20 +21,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::group(['middleware' => ['auth', 'role: admin']], function(){
-    return 'admin';
-}); 
-
 Auth::routes([
     'verify'=>true
 ]);
 
+Route::get('/', function() {
+    return view('home');
+});
 Route::get('home', function () {
     return view('home');
-})->name('home')->middleware('verified');
+})->name('home')->middleware('verified', 'auth');
 
 Route::get('category', function () {
     return view('category');
@@ -44,16 +40,19 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
-// Route::get('product', function () {
-//     return view('product');
-// })->name('product');
 
-Route::resource('product',ProductController::class);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('product',ProductController::class);
+    Route::resource('category',CategoryController::class);
+    Route::resource('delivery',DeliveryController::class);
+    Route::resource('detail',DetailController::class);
+    Route::resource('payment',PaymentController::class);
+    Route::resource('review',ReviewController::class);
+});
 
-// Route::resource('product',ProductController::class);
-// Route::resource('category',CategoryController::class);
-// Route::resource('delivery',DeliveryController::class);
-// Route::resource('detail',DetailController::class);
-// Route::resource('order',OrderController::class);
-// Route::resource('payment',PaymentController::class);
-// Route::resource('review',ReviewController::class);
+Route::get('/login1', function() {
+    return view('login');
+})->name('login');
+Route::get('/register1', function() {
+    return view('register');
+})->name('register');

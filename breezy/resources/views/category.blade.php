@@ -3,11 +3,11 @@
 @section('content')
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory">
+            Launch static backdrop modal
+        </button>
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
                 class="bg-secondary pr-3">Kategori Baju</span></h2>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategory">
-                    Launch static backdrop modal
-                </button>
                 <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" >
                         <div class="modal-content">
