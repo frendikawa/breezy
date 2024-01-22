@@ -21,7 +21,7 @@
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-ouline-dark btn-square" type="submit"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-outline-dark btn-square" type="submit"><i class="fa fa-trash"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -39,18 +39,6 @@
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small>(99)</small>
                             </div>
-<<<<<<< Updated upstream
-=======
-
-            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-light mb-4">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i
-                                    class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa-solid fa-eye"></i></a>
->>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
@@ -81,6 +69,12 @@
                                             <label for="" class="form-label">Harga</label>
                                             <input type="number" name="price" id="" class="form-control"
                                                 value="{{ $product->price }}">
+                                                <label for="" class="form-label">Kategori</label>
+                                                <select name="category_id" id="" class="form-control">
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{$category->id}}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             <label for="" class="form-label">Stock</label>
                                             <input type="number" name="stock" id="" class="form-control"
                                                 value="{{ $product->stock }}">
@@ -124,6 +118,13 @@
                                         <input type="text" name="name" id="" class="form-control">
                                         <label for="" class="form-label">Description</label>
                                         <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        <label for="" class="form-label">Kategori</label>
+                                        <select name="category_id" id="" class="form-control">
+                                            <option disabled selected value="">Pilih kategori</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
                                         <label for="" class="form-label">Price</label>
                                         <input type="number" name="price" id="" class="form-control">
                                         <label for="" class="form-label">Stock</label>

@@ -30,8 +30,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
-        return to_route('category.index')->with('success', "Berhasil menambahkan kategori $request->name!");
+            Category::create($request->all());
+            return to_route('category.index')->with('success', "Berhasil menambahkan kategori $request->name!");
     }
 
     /**
@@ -64,7 +64,11 @@ class CategoryController extends Controller
      */
     public function destroy( Category $category)
     {
-        $category->delete();
-        return to_route('category.index')->with('success', 'Berhasil menghapus data.');
+        try {
+            $category->delete();
+            return redirect()->back()->with('success','Berhasil menghapus kategori');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error','Kategory gagal dihapus karena masih terikat dengan table lain');
+        }
     }
 }

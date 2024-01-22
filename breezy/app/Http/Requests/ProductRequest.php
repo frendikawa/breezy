@@ -23,6 +23,7 @@ class ProductRequest extends FormRequest
             'photo'=>'required',
             'description'=>'required',
             'price'=>'required',
+            'category_id'=>'required',
             'stock'=>'required',
         ];
     }
@@ -33,6 +34,7 @@ class ProductRequest extends FormRequest
             'photo.required'=>'Kolom foto tidak boleh kosong',
             'description.required'=>'Deskripsi tidak boleh kosong',
             'price.required'=>'Harga tidak boleh kosong',
+            'category_id.required'=>'Kategori tidak boleh kosong',
             'stock.required'=>'Stock tidak boleh kosong',
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product', compact('products'));
+        $categories = Category::all();
+        return view('product', compact('products', 'categories'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProductController extends Controller
             'photo' => $file,
             'description' => $request->description,
             'price' => $request->price,
+            'category_id' => $request->category_id,
             'stock' => $request->stock,
         ];
 
@@ -74,6 +77,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'category_id' => 'required',
             'stock' => 'required',
         ]);
 
@@ -92,6 +96,7 @@ class ProductController extends Controller
             'photo' => $file,
             'description' => $request->description,
             'price' => $request->price,
+            'category_id' => $request->category_id,
             'stock' => $request->stock,
         ];
 

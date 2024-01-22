@@ -75,16 +75,6 @@
                                 </a>
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
-<<<<<<< Updated upstream
-                                        <form action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Keluar</button>
-                                        </form>
-                                    <a href="">
-                                            <i class="fa-solid fa-circle-user"
-                                                style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
-                                        </a>
-=======
                                         <div class="dropdown">
                                             <a href="">
                                                 <i class="fa-solid fa-circle-user" style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
@@ -97,7 +87,6 @@
                                                 </form>
                                             </div>
                                         </div>
->>>>>>> Stashed changes
                                     @else
                                         <a href="{{ route('login') }}" class="btn btn-primary">Masuk</a>
                                     @endif
