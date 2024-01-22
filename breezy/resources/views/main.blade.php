@@ -44,7 +44,7 @@
                             <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
                             <a href="{{ route('product.index') }}" class="nav-item nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">Produk</a>
                             <div class="nav-item dropdown">
-                                <a href="" style="cursor: default" class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
+                                <a href="{{ route('category.index') }}" style="cursor: default" class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
                                 <div class="dropdown-content">
                                     {{-- @foreach ($categories as $item)
                                         <a href="" class="dropdown-item">{{ $item->name }}</a>
@@ -75,6 +75,7 @@
                                 </a>
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
+<<<<<<< Updated upstream
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-primary">Keluar</button>
@@ -83,8 +84,22 @@
                                             <i class="fa-solid fa-circle-user"
                                                 style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
                                         </a>
+=======
+                                        <div class="dropdown">
+                                            <a href="">
+                                                <i class="fa-solid fa-circle-user" style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                                            </a>
+                                            <div class="dropdown-content">
+                                                <a href="" style="">Edit akun</a>
+                                                <form action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="text-primary" style=" padding-left: 10px; border:none; background: none;">Keluar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+>>>>>>> Stashed changes
                                     @else
-                                        <a href="{{ route('login') }}" class="btn btn-warning">Masuk</a>
+                                        <a href="{{ route('login') }}" class="btn btn-primary">Masuk</a>
                                     @endif
                                 </div>
                             </div>

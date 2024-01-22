@@ -2513,8 +2513,8 @@ fieldset:disabled a.btn {
 
 .btn-warning {
   color: #fff;
-  background-color: #2087FF;
-  border-color: #2087FF;
+  background-color: #e0a800;
+  border-color: #e0a800;
 }
 
 .btn-warning:hover {
@@ -2532,8 +2532,8 @@ fieldset:disabled a.btn {
 
 .btn-warning.disabled, .btn-warning:disabled {
   color: #fff;
-  background-color: #2087FF;
-  border-color: #2087FF;
+  background-color: #e0a800;
+  border-color: #e0a800;
 }
 
 .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
@@ -9296,7 +9296,7 @@ a.text-info:hover, a.text-info:focus {
 }
 
 .text-warning {
-  color: #2087FF !important;
+  color: #ba8b00 !important;
 }
 
 a.text-warning:hover, a.text-warning:focus {
@@ -9320,7 +9320,7 @@ a.text-light:hover, a.text-light:focus {
 }
 
 .text-dark {
-  color: #dfff !important;
+  color: #1A5295 !important;
 }
 
 a.text-dark:hover, a.text-dark:focus {
@@ -9742,4 +9742,5 @@ a.text-dark:hover, a.text-dark:focus {
   z-index: 800;
   width: max-content;
   padding: 10px 10px;
+  transition: .5s;
 }
