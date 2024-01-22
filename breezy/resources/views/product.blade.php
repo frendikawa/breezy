@@ -18,12 +18,6 @@
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-eye"></i>
                                 </button>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-dark btn-square"><i
-                                            class="fa fa-trash"></i></button>
-                                </form>
                             </div>
                         </div>
                         <div class="text-center py-4">
@@ -40,6 +34,8 @@
                                 <small class="fa fa-star text-primary mr-1"></small>
                                 <small>(99)</small>
                             </div>
+<<<<<<< HEAD
+=======
 
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
@@ -49,12 +45,13 @@
                             <a class="btn btn-outline-dark btn-square" href=""><i
                                     class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa-solid fa-eye"></i></a>
+>>>>>>> 2cc0ff9dee1daf1560bfdc7e31adf3851782cf89
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -63,7 +60,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('product.update', $product->id) }}" method="POST">
+                                <form action="{{ route('product.update',$product->id) }}" method="POST">
                                     @method('PUT')
                                     @csrf
                                     <div class="card">
@@ -71,8 +68,7 @@
                                             <label for="" class="form-label">Deskripsi</label>
                                             <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
                                             <label for="" class="form-label">Stock</label>
-                                            <input type="number" name="stock" id="" class="form-control"
-                                                value="{{ $product->stock }}">
+                                            <input type="number" name="stock" id="" class="form-control" value="{{$product->stock}}">
                                         </div>
                                     </div>
                             </div>
@@ -124,4 +120,9 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+            <!-- Products End -->
+        @endsection
+=======
 @endsection
+>>>>>>> 2cc0ff9dee1daf1560bfdc7e31adf3851782cf89
