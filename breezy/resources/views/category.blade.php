@@ -73,7 +73,7 @@
                                     <form method="POST" action="{{ route('category.destroy', $item->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                    <input type="hidden" name="id" value="<?= $item['id'] ?>">
+                                    <input type="hidden" name="id" value="<?= $item->id ?>">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5 text-danger" id="staticBackdropLabel">Konfirmasi hapus</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
