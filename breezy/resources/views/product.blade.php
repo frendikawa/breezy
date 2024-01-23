@@ -11,26 +11,26 @@
                     <div class="product-item bg-light mb-4">
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
-                            <div class="product-action">
-                                <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
+                            <div class="product-action show-on-hover">
+                                <button type="button" class="btn btn-outline-dark btn-square mx-1" data-bs-toggle="modal"
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-eye"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-outline-dark btn-square mx-1" data-bs-toggle="modal"
                                     data-bs-target="#update{{ $product->id }}">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                                 <form action="{{ route('troli.store', $product->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn btn-outline-dark btn-square">
+                                    <button type="submit" class="btn btn-outline-dark btn-square mx-1">
                                         <i class="fa fa-shopping-cart"></i></a>
                                     </button>
                                 </form>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
-                                        data-bs-target="#delete{{ $product->id }}">
+                                    <button type="button" class="btn btn-outline-dark btn-square mx-1"
+                                        data-bs-toggle="modal" data-bs-target="#delete{{ $product->id }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
 
@@ -63,8 +63,7 @@
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">{{ $product->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>{{ $product->price }}</h5>
-                                <h6 class="text-muted ml-2"><del>Rp. 100.000</del></h6>
+                                <h5>Rp.{{ number_format($product->price, 0, ',', '.') }}</h5>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -88,7 +87,6 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="card">
                                     <div class="card-body d-flex">
                                         <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="500"
                                             class="mr-5">
@@ -100,11 +98,8 @@
                                             <p>Stok: {{ $product->stock }}</p>
                                         </div>
                                     </div>
-                                </div>
                             </div>
-                            <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,27 +120,79 @@
                                     @csrf
                                     <div class="card">
                                         <div class="card-body">
-                                            <label for="" class="form-label">Nama Produk</label>
-                                            <input type="text" name="name" id="" class="form-control"
-                                                value="{{ $product->name }}">
-                                            <label for="" class="form-label">Gambar</label>
-                                            <input type="file" name="photo" id="" class="form-control">
-                                            <label for="" class="form-label">Deskripsi</label>
-                                            <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
-                                            <label for="" class="form-label">Harga</label>
-                                            <input type="number" name="price" id="" class="form-control"
-                                                value="{{ $product->price }}">
-                                            <label for="" class="form-label">Kategori</label>
-                                            <select name="category_id" id="" class="form-control">
-                                                @foreach ($categories as $category)
+                                            <div class="mb-3">
+                                                <label for="photo" class="form-label">Gambar produk</label>
+                                                <input class="form-control @error('photo') is-invalid @enderror"
+                                                    type="file" id="photo" name="photo">
+                                                @error('photo')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    id="floatingInput" placeholder="Nama produk" name="name"
+                                                    value="{{ $product->name }}">
+                                                <label for="floatingInput">Nama product</label>
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control @error('description') is-invalid @enderror" placeholder="deskripsi" name="description"
+                                                    style="height: 150px">{{ $product->description }}</textarea>
+                                                <label for="floatingInput">Deskripsi</label>
+                                                @error('description')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="number"
+                                                    class="form-control @error('price') is-invalid @enderror"
+                                                    id="floatingInput" placeholder="harga" name="price"
+                                                    value="{{ $product->price }}">
+                                                <label for="floatingInput">Harga</label>
+                                                @error('price')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input type="number"
+                                                    class="form-control @error('stock') is-invalid @enderror"
+                                                    id="floatingInput" placeholder="stok" name="stock"
+                                                    value="{{ $product->stock }}">
+                                                <label for="floatingInput">Stok</label>
+                                                @error('stock')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <select class="form-select @error('category_id') is-invalid @enderror"
+                                                    name="category_id" aria-label="Default select example">
+                                                    <option selected>- Kategori -</option>
+                                                    @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ $product->category_id == $category->id ? 'selected' : '' }}>
                                                         {{ $category->name }}</option>
                                                 @endforeach
-                                            </select>
-                                            <label for="" class="form-label">Stock</label>
-                                            <input type="number" name="stock" id="" class="form-control"
-                                                value="{{ $product->stock }}">
+                                                </select>
+                                                <label for="category_id">Kategori</label>
+                                                @error('category_id')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                             </div>
