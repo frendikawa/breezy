@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
@@ -33,16 +34,8 @@ Route::middleware('guest')->group(function() {
 
 Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::get('/', function() {
-    return view('home');
-});
-Route::get('home', function () {
-    return view('home');
-})->name('home');
-
-Route::get('category', function () {
-    return view('category');
-})->name('category');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('contact', function () {
     return view('contact');

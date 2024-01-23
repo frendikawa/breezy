@@ -138,17 +138,19 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="{{ route('profil.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
-                                akun</a>
-                            <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="text-secondary mb-2" style="background: none; border:none; "><i
-                                    class="fa fa-angle-right mr-2"></i>Keluar</button>
-                            </form>
-                        </div>
+                        @if (Auth::check())
+                            <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-secondary mb-2" href="{{ route('profile.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
+                                    akun</a>
+                                <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="text-secondary mb-2" style="background: none; border:none; "><i
+                                        class="fa fa-angle-right mr-2"></i>Keluar</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                     <div class="col-md-4 mb-5">
                         <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>

@@ -45,11 +45,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(String $id)
     {
-        dd($category);
-        $products = Product::where('category_id', $category)->get();
-        return view('category_product', compact('products', 'category'));
+        //
     }
 
     /**
