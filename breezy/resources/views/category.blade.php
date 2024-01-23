@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-floating mb-3">
-                                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name', $item->name) }}">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name', $item->name) }}">
                                                 <label for="floatingInput">Nama kategori</label>
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -104,7 +104,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-floating mb-3">
-                                <input type="name" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name') }}">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name') }}">
                                 <label for="floatingInput">Nama kategori</label>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

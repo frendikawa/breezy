@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DetailController;
@@ -23,9 +24,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes([
-    'verify'=>true
-]);
+Route::middleware('guest')->group(function() {
+    Auth::routes([
+        'verify'=>true,
+    ]);
+});
+
+Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/', function() {
     return view('home');

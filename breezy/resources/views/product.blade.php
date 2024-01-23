@@ -12,8 +12,11 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="{{ route('troli.index') }}"><i
-                                        class="fa fa-shopping-cart"></i></a>
+                                <form action="{{ route('troli.store', $product->id) }}" method="POST">
+                                    <button type="submit" class="btn btn-outline-dark btn-square">
+                                        <i class="fa fa-shopping-cart"></i></a>
+                                    </button>
+                                </form>
                                 <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-eye"></i>
@@ -163,30 +166,23 @@
                                 @csrf
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="mt-3"><label for="" class="form-label">Gambar
-                                                produk</label>
-                                            <input type="file" name="photo" id="" class="form-control">
-                                        </div>
-                                        <div class="mt-3"><label for="" class="form-label">Nama produk</label>
-                                            <input type="text" name="name" id="" class="form-control">
-                                        </div>
-                                        <div class="mt-3"><label for="" class="form-label">Deskripsi</label>
-                                            <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
-                                        </div>
-                                        <div class="mt-3"><label for="" class="form-label">Kategori</label>
-                                            <select name="category_id" id="" class="form-control">
-                                                <option disabled selected value="">Pilih kategori</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mt-3"><label for="" class="form-label">Harga</label>
-                                            <input type="number" name="price" id="" class="form-control">
-                                        </div>
-                                        <div class="mt-3"><label for="" class="form-label">Stok</label>
-                                            <input type="number" name="stock" id="" class="form-control">
-                                        </div>
+                                        <label for="" class="form-label">Gambar produk</label>
+                                        <input type="file" name="photo" id="" class="form-control">
+                                        <label for="" class="form-label">Name</label>
+                                        <input type="text" name="name" id="" class="form-control">
+                                        <label for="" class="form-label">Description</label>
+                                        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        <label for="" class="form-label">Kategori</label>
+                                        <select name="category_id" id="" class="form-control">
+                                            <option disabled selected value="">Pilih kategori</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="" class="form-label">Price</label>
+                                        <input type="number" name="price" id="" class="form-control">
+                                        <label for="" class="form-label">Stock</label>
+                                        <input type="number" name="stock" id="" class="form-control">
                                     </div>
                                 </div>
                         </div>

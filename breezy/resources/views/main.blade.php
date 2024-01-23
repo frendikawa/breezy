@@ -87,8 +87,7 @@
                                                 <a href="{{ route('profil.index') }}" style="">Edit akun</a>
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="text-primary"
-                                                        style=" padding-left: 10px; border:none; background: none;">Keluar</button>
+                                                    <button type="submit" class="text-primary" style=" padding-left: 10px; border:none; background: none;">Keluar</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -140,23 +139,15 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Lihat
                                 akun</a>
-                            <a class="text-secondary mb-2" href="#"><i
-                                    class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-secondary mb-2" href="{{ route('logout') }}"><i
-                                    class="fa fa-angle-right mr-2"></i>Keluar</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="text-secondary mb-2" style="background: none; border:none; "><i
+                                    class="fa fa-angle-right mr-2"></i>Keluar</button>
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Tuliskan pesan</h5>
-                        <p>Masukan anda, adalah inspirasi kami</p>
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email Address">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">Sign Up</button>
-                                </div>
-                            </div>
-                        </form>
                         <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
                         <div class="d-flex">
                             <a class="btn btn-primary btn-square mr-2" href="#"><i
