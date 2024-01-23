@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TroliController;
 use Illuminate\Support\Facades\Auth;
@@ -55,10 +56,11 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('detail',DetailController::class);
     Route::resource('payment',PaymentController::class);
     Route::resource('review',ReviewController::class);
-    route::resource('profil',ProfilController::class);
 });
-
-Route::resource('troli',TroliController::class);
+Route::middleware(['auth','verified'])->group(function () {
+    route::resource('profile',ProfileController::class);
+    Route::resource('troli',TroliController::class);
+});
 Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
