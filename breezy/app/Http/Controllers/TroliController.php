@@ -26,9 +26,18 @@ class TroliController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store($product_id)
     {
-        //
+        $user_id = auth()->user()->id; // Sesuaikan sesuai kebutuhan Anda
+
+        // Simpan informasi ke dalam tabel troli
+        Troli::create([
+            'user_id'    => $user_id,
+            'product_id' => $product_id,
+            // tambahkan kolom lain sesuai kebutuhan
+        ]);
+
+        return redirect()->back()->with('success', 'Produk ditambahkan ke dalam troli.');
     }
 
     /**

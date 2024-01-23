@@ -12,8 +12,11 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="{{route('troli.index')}}"><i
-                                        class="fa fa-shopping-cart"></i></a>
+                                <form action="{{ route('troli.store', $product->id) }}" method="POST">
+                                    <button type="submit" class="btn btn-outline-dark btn-square">
+                                        <i class="fa fa-shopping-cart"></i></a>
+                                    </button>
+                                </form>
                                 <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-pencil"></i>
@@ -114,7 +117,45 @@
                                 @csrf
                                 <div class="card">
                                     <div class="card-body">
-                                        <label for="" class="form-label">Gambar produk</label>
+                                        <div class="mb-3">
+                                            <label for="photo" class="form-label">Gambar produk</label>
+                                            <input class="form-control @error('photo') is-invalid @enderror" type="file" id="photo" name="photo">
+                                            @error('photo')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="Nama produk" name="name" value="{{ old('name') }}">
+                                            <label for="floatingInput">Nama product</label>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control @error('description') is-invalid @enderror" placeholder="description obat" name="description" style="height: 150px">{{ old('description') }}</textarea>
+                                            <label for="floatingInput">Nama kategori</label>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name') }}">
+                                            <label for="floatingInput">Nama kategori</label>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+
+                                        {{-- <label for="" class="form-label">Gambar produk</label>
                                         <input type="file" name="photo" id="" class="form-control">
                                         <label for="" class="form-label">Name</label>
                                         <input type="text" name="name" id="" class="form-control">
@@ -130,7 +171,7 @@
                                         <label for="" class="form-label">Price</label>
                                         <input type="number" name="price" id="" class="form-control">
                                         <label for="" class="form-label">Stock</label>
-                                        <input type="number" name="stock" id="" class="form-control">
+                                        <input type="number" name="stock" id="" class="form-control"> --}}
                                     </div>
                                 </div>
                         </div>

@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'photo'=>'required',
+            'photo'=>'nullable|mimes:png,jpg,jpeg',
             'description'=>'required',
             'price'=>'required',
             'category_id'=>'required',
@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
     public function messages() : array {
         return [
             'name.required'=>'Nama tidak boleh kosong',
-            'photo.required'=>'Kolom foto tidak boleh kosong',
+            'photo.mimes'=>'Foto hanya diperbolehkan png, jpg dan jpeg',
             'description.required'=>'Deskripsi tidak boleh kosong',
             'price.required'=>'Harga tidak boleh kosong',
             'category_id.required'=>'Kategori tidak boleh kosong',
