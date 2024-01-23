@@ -26,7 +26,8 @@
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
@@ -41,17 +42,22 @@
                     <div class="collapse navbar-collapse justify-content-between px-5" style="width: 30vw"
                         id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
-                            <a href="{{ route('product.index') }}" class="nav-item nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">Produk</a>
+                            <a href="{{ route('home') }}"
+                                class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
+                            <a href="{{ route('product.index') }}"
+                                class="nav-item nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">Produk</a>
                             <div class="nav-item dropdown">
-                                <a href="{{ route('category.index') }}" style="cursor: default" class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
+                                <a href="{{ route('category.index') }}" style="cursor: default"
+                                    class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
                                 <div class="dropdown-content">
                                     @foreach (DB::table('categories')->get() as $item)
                                         <a href="">{{ $item->name }}</a>
                                     @endforeach
                                 </div>
                             </div>
-                            <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak kami</a>
+                            <a href="{{ route('contact') }}"
+                                class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak
+                                kami</a>
                         </div>
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
@@ -65,7 +71,7 @@
                                 </div>
                             </form>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="{{route('troli.index')}}" class="btn px-0 ml-3">
+                                <a href="{{ route('troli.index') }}" class="btn px-0 ml-3">
                                     <i class="fas fa-shopping-cart text-primary"></i>
                                     <span class="badge text-secondary border border-secondary rounded-circle"
                                         style="padding-bottom: 2px;">0</span>
@@ -74,13 +80,15 @@
                                     @if (Auth::check())
                                         <div class="dropdown">
                                             <a href="">
-                                                <i class="fa-solid fa-circle-user" style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                                                <i class="fa-solid fa-circle-user"
+                                                    style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
                                             </a>
                                             <div class="dropdown-content">
-                                                <a href="{{route('profil.index')}}" style="">Edit akun</a>
+                                                <a href="{{ route('profil.index') }}" style="">Edit akun</a>
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="text-primary" style=" padding-left: 10px; border:none; background: none;">Keluar</button>
+                                                    <button type="submit" class="text-primary"
+                                                        style=" padding-left: 10px; border:none; background: none;">Keluar</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -108,7 +116,8 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <h5 class="text-secondary text-uppercase mb-4">Halo Breelove</h5>
-                <p class="mb-4">Breezy! Keindahan, keunikan, dan ketelitian dalam setiap sentuhan. Seni yang memikat, produk yang mempesona.</p>
+                <p class="mb-4">Breezy! Keindahan, keunikan, dan ketelitian dalam setiap sentuhan. Seni yang memikat,
+                    produk yang mempesona.</p>
                 <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kepanjen, Malang</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>Breezy@gmail.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
@@ -118,17 +127,23 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="{{ route('home') }}"><i class="fa fa-angle-right mr-2"></i>Beranda</a>
-                            <a class="text-secondary mb-2" href="{{ route('product.index') }}"><i class="fa fa-angle-right mr-2"></i>Produk kami</a>
-                            <a class="text-secondary mb-2" href="{{ route('contact') }}"><i class="fa fa-angle-right mr-2"></i>Kontak kami</a>
+                            <a class="text-secondary mb-2" href="{{ route('home') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Beranda</a>
+                            <a class="text-secondary mb-2" href="{{ route('product.index') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Produk kami</a>
+                            <a class="text-secondary mb-2" href="{{ route('contact') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Kontak kami</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Lihat akun</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-secondary mb-2" href="{{ route('logout') }}"><i class="fa fa-angle-right mr-2"></i>Keluar</a>
+                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Lihat
+                                akun</a>
+                            <a class="text-secondary mb-2" href="#"><i
+                                    class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="{{ route('logout') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Keluar</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
