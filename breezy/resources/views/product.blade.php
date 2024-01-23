@@ -12,16 +12,21 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href="{{route('troli.index')}}"><i
+                                <a class="btn btn-outline-dark btn-square" href="{{ route('troli.index') }}"><i
                                         class="fa fa-shopping-cart"></i></a>
                                 <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
                                     data-bs-target="#detail{{ $product->id }}">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
+                                    data-bs-target="#update{{ $product->id }}">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-outline-dark btn-square" type="submit"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-outline-dark btn-square" type="submit"><i
+                                            class="fa fa-trash"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -45,6 +50,36 @@
 
                 <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="card">
+                                        <div class="card-body d-flex">
+                                            <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="500" class="mr-5">
+                                            <div class="text">
+                                                <p>Nama: {{ $product->name }}</p>
+                                                <p>Deskripsi: {{ $product->description }}</p>
+                                                <p>Kategori: {{ $product->category_id }}</p>
+                                                <p>Harga: {{ $product->price }}</p>
+                                                <p>Stok: {{ $product->stock }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Simpan perubahan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="update{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -59,25 +94,39 @@
                                     @csrf
                                     <div class="card">
                                         <div class="card-body">
-                                            <label for="" class="form-label">Nama Produk</label>
-                                            <input type="text" name="name" id="" class="form-control"
-                                                value="{{ $product->name }}">
-                                            <label for="" class="form-label">Gambar</label>
-                                            <input type="file" name="photo" id="" class="form-control">
-                                            <label for="" class="form-label">Deskripsi</label>
-                                            <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
-                                            <label for="" class="form-label">Harga</label>
-                                            <input type="number" name="price" id="" class="form-control"
-                                                value="{{ $product->price }}">
+                                            <div class="mt-3">
+                                                <label for="" class="form-label">Nama Produk</label>
+                                                <input type="text" name="name" id="" class="form-control"
+                                                    value="{{ $product->name }}">
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="" class="form-label">Gambar</label>
+                                                <input type="file" name="photo" id="" class="form-control">
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="" class="form-label">Deskripsi</label>
+                                                <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="" class="form-label">Harga</label>
+                                                <input type="number" name="price" id="" class="form-control"
+                                                    value="{{ $product->price }}">
+                                            </div>
+                                            <div class="mt-3">
                                                 <label for="" class="form-label">Kategori</label>
                                                 <select name="category_id" id="" class="form-control">
                                                     @foreach ($categories as $category)
-                                                        <option value="{{$category->id}}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                                                        <option value="{{ $category->id }}"
+                                                            {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                                            {{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
-                                            <label for="" class="form-label">Stock</label>
-                                            <input type="number" name="stock" id="" class="form-control"
-                                                value="{{ $product->stock }}">
+                                            </div>
+                                            <div class="mt-3">
+                                                <label for="" class="form-label">Stock</label>
+                                                <input type="number" name="stock" id="" class="form-control"
+                                                    value="{{ $product->stock }}">
+                                            </div>
                                         </div>
                                     </div>
                             </div>
@@ -114,23 +163,30 @@
                                 @csrf
                                 <div class="card">
                                     <div class="card-body">
-                                        <label for="" class="form-label">Gambar produk</label>
-                                        <input type="file" name="photo" id="" class="form-control">
-                                        <label for="" class="form-label">Name</label>
-                                        <input type="text" name="name" id="" class="form-control">
-                                        <label for="" class="form-label">Description</label>
-                                        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
-                                        <label for="" class="form-label">Kategori</label>
-                                        <select name="category_id" id="" class="form-control">
-                                            <option disabled selected value="">Pilih kategori</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="" class="form-label">Price</label>
-                                        <input type="number" name="price" id="" class="form-control">
-                                        <label for="" class="form-label">Stock</label>
-                                        <input type="number" name="stock" id="" class="form-control">
+                                        <div class="mt-3"><label for="" class="form-label">Gambar
+                                                produk</label>
+                                            <input type="file" name="photo" id="" class="form-control">
+                                        </div>
+                                        <div class="mt-3"><label for="" class="form-label">Nama produk</label>
+                                            <input type="text" name="name" id="" class="form-control">
+                                        </div>
+                                        <div class="mt-3"><label for="" class="form-label">Deskripsi</label>
+                                            <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                        </div>
+                                        <div class="mt-3"><label for="" class="form-label">Kategori</label>
+                                            <select name="category_id" id="" class="form-control">
+                                                <option disabled selected value="">Pilih kategori</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mt-3"><label for="" class="form-label">Harga</label>
+                                            <input type="number" name="price" id="" class="form-control">
+                                        </div>
+                                        <div class="mt-3"><label for="" class="form-label">Stok</label>
+                                            <input type="number" name="stock" id="" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                         </div>
