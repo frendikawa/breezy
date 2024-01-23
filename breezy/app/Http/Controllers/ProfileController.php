@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class ProfilController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return 'halloooo';
+        $user = auth()->user();
+
+        // Meneruskan data pengguna ke tampilan 'profile'
+        return view('profile', compact('user'));
     }
 
     /**
@@ -49,9 +56,12 @@ class ProfilController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProfileRequest $request, $id)
     {
-        //
+        $user = User::FindOrFail($id);
+        $data=$request->except('password');
+        $user->update($data);
+        return redirect()->back()->with('success','berhasil melakukan update profil');
     }
 
     /**

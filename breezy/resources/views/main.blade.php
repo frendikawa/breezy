@@ -83,12 +83,11 @@
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
                                         <div class="dropdown">
-                                            <a href="">
+                                            <a href="{{ route('profile.index') }}">
                                                 <i class="fa-solid fa-circle-user"
                                                     style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
                                             </a>
                                             <div class="dropdown-content">
-                                                <a href="{{ route('profil.index') }}" style="">Edit akun</a>
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="text-primary" style=" padding-left: 10px; border:none; background: none;">Keluar</button>
