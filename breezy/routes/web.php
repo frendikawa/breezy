@@ -55,9 +55,9 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('detail',DetailController::class);
     Route::resource('payment',PaymentController::class);
     Route::resource('review',ReviewController::class);
-    Route::resource('troli',TroliController::class);
     route::resource('profil',ProfilController::class);
 });
 
+Route::resource('troli',TroliController::class);
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');

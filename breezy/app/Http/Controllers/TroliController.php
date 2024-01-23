@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Troli;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class TroliController extends Controller
 {
@@ -12,7 +14,8 @@ class TroliController extends Controller
      */
     public function index()
     {
-        return view('troli');
+        $trolis = Troli::latest()->get();
+        return view('troli', compact('trolis'));
     }
 
     /**
@@ -26,16 +29,9 @@ class TroliController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store($product_id)
+    public function store(Request $request)
     {
-        $user_id = auth()->user()->id; // Sesuaikan sesuai kebutuhan Anda
-
-        // Simpan informasi ke dalam tabel troli
-        Troli::create([
-            'user_id'    => $user_id,
-            'product_id' => $product_id,
-            // tambahkan kolom lain sesuai kebutuhan
-        ]);
+        Troli::create($request->all());
 
         return redirect()->back()->with('success', 'Produk ditambahkan ke dalam troli.');
     }
@@ -69,6 +65,7 @@ class TroliController extends Controller
      */
     public function destroy(Troli $troli)
     {
-        //
+        $troli->delete();
+        return to_route('troli.index')->with('success', 'Berhasil menghapus dari troli anda.');
     }
 }

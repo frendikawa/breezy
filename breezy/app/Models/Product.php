@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-    
-
     protected $fillable=[
         'name',
         'photo',
@@ -22,6 +20,10 @@ class Product extends Model
 
     public function category():BelongsTo {
         return $this->belongsTo(Category::class);
+    }
+
+    public function troli() {
+        return $this->hasMany(Troli::class);
     }
 }
 

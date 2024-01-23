@@ -12,20 +12,25 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action">
-                                <form action="{{ route('troli.store', $product->id) }}" method="POST">
+                                <form action="{{ route('troli.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}">
                                     <button type="submit" class="btn btn-outline-dark btn-square">
                                         <i class="fa fa-shopping-cart"></i></a>
                                     </button>
                                 </form>
-                                <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
-                                    data-bs-target="#detail{{ $product->id }}">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-outline-dark btn-square" type="submit"><i class="fa fa-trash"></i></button>
-                                </form>
+                                @if (Auth::check() && Auth()->user()->role == 'admin')
+                                    <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
+                                        data-bs-target="#detail{{ $product->id }}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-outline-dark btn-square" type="submit"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                         <div class="text-center py-4">

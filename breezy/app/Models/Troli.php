@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Troli extends Model
 {
     use HasFactory;
+    protected $table = 'trolis';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
+
+    public $incrementing = true;
+    public $timestamps = true;
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
 }
