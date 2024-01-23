@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Troli;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 
 class TroliController extends Controller
 {
@@ -14,7 +14,7 @@ class TroliController extends Controller
      */
     public function index()
     {
-        $trolis = Troli::latest()->get();
+        $trolis = Troli::where('user_id', Auth()->id())->get();
         return view('troli', compact('trolis'));
     }
 

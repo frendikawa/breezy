@@ -45,9 +45,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        dd($category);
+        $products = Product::where('category_id', $category)->get();
+        return view('category_product', compact('products', 'category'));
     }
 
     /**
@@ -73,36 +75,6 @@ class ProductController extends Controller
         }
 
         $product->update($data);
-        // $product = Product::find($id);
-
-        // $request->validate([
-        //     'name' => 'required',
-        //     'description' => 'required',
-        //     'price' => 'required',
-        //     'category_id' => 'required',
-        //     'stock' => 'required',
-        // ]);
-
-        // // Periksa apakah ada file foto yang diunggah
-        // if ($request->hasFile('photo')) {
-        //     // Jika ada file baru, simpan foto baru dan hapus foto lama
-        //     $file = Storage::put('photo', $request->file('photo'));
-        //     Storage::disk('public')->delete($product->photo);
-        // } else {
-        //     // Jika tidak ada file baru, gunakan foto lama
-        //     $file = $product->photo;
-        // }
-
-        // $data = [
-        //     'name' => $request->name,
-        //     'photo' => $file,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'category_id' => $request->category_id,
-        //     'stock' => $request->stock,
-        // ];
-
-        // $product->update($data);
         return redirect()->back()->with('success', 'Berhasil update data');
     }
 

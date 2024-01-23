@@ -51,7 +51,7 @@
                                     class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
                                 <div class="dropdown-content">
                                     @foreach (DB::table('categories')->get() as $item)
-                                        <a href="">{{ $item->name }}</a>
+                                        <a href="{{ route('category.show', $item->id) }}">{{ $item->name }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
+                        <h5 class="text-secondary text-uppercase mb-4">Navigasi</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="{{ route('home') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Beranda</a>
@@ -141,9 +141,9 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Lihat
+                            <a class="text-secondary mb-2" href="{{ route('profil.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
                                 akun</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="text-secondary mb-2" style="background: none; border:none; "><i
@@ -169,13 +169,10 @@
         <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-secondary">
-                    &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
+                    &copy; <a class="text-primary" href="#">Breezy</a>. All Rights Reserved. Designed
                     by
-                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                    <a class="text-primary" href="https://htmlcodex.com">Farah & Frendika</a>
                 </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
             </div>
         </div>
     </div>
@@ -187,8 +184,6 @@
 
 
     <!-- JavaScript Libraries -->
-    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> --}}
     <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
@@ -207,33 +202,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
-</body>
-
-</html>
-<div class="col-md-6 px-xl-0 text-center text-md-right">
-    <img class="img-fluid" src="img/payments.png" alt="">
-</div>
-</div>
-</div>
-<!-- Footer End -->
-
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-
-<!-- Contact Javascript File -->
-<script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
-<script src="{{ asset('mail/contact.js') }}"></script>
-
-<!-- Template Javascript -->
-<script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

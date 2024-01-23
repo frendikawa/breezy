@@ -91,19 +91,19 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                    <div class="card-body d-flex">
-                                        <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="500"
+                                    <div class="card-body d-flex align-items-center">
+                                        <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="300"
                                             class="mr-5">
                                         <div class="text">
-                                            <p>Nama: {{ $product->name }}</p>
-                                            <p>Deskripsi: {{ $product->description }}</p>
-                                            <p>Kategori: {{ $product->category_id }}</p>
-                                            <p>Harga: {{ $product->price }}</p>
-                                            <p>Stok: {{ $product->stock }}</p>
+                                            <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
+                                            <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
+                                            <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}</p>
+                                            <p><b class="text-primary">Harga:</b> Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
+                                            <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
                                         </div>
                                     </div>
                             </div>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                                                     class="form-control @error('name') is-invalid @enderror"
                                                     id="floatingInput" placeholder="Nama produk" name="name"
                                                     value="{{ $product->name }}">
-                                                <label for="floatingInput">Nama product</label>
+                                                <label for="floatingInput">Nama produk</label>
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -247,7 +247,7 @@
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 id="floatingInput" placeholder="Nama produk" name="name"
                                                 value="{{ old('name') }}">
-                                            <label for="floatingInput">Nama product</label>
+                                            <label for="floatingInput">Nama produk</label>
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -303,24 +303,6 @@
                                                 </span>
                                             @enderror
                                         </div>
-
-                                        {{-- <label for="" class="form-label">Gambar produk</label>
-                                        <input type="file" name="photo" id="" class="form-control">
-                                        <label for="" class="form-label">Name</label>
-                                        <input type="text" name="name" id="" class="form-control">
-                                        <label for="" class="form-label">Description</label>
-                                        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
-                                        <label for="" class="form-label">Kategori</label>
-                                        <select name="category_id" id="" class="form-control">
-                                            <option disabled selected value="">Pilih kategori</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        <label for="" class="form-label">Price</label>
-                                        <input type="number" name="price" id="" class="form-control">
-                                        <label for="" class="form-label">Stock</label>
-                                        <input type="number" name="stock" id="" class="form-control"> --}}
                                     </div>
                                 </div>
                         </div>

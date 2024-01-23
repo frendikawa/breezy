@@ -59,5 +59,6 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
 });
 
 Route::resource('troli',TroliController::class);
+Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
