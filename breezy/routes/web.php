@@ -31,14 +31,14 @@ Route::middleware('guest')->group(function() {
     ]);
 });
 
+Route::get('home', function () {
+    return view('home');
+})->name('home')->middleware('verified');
 Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/', function() {
     return view('home');
 });
-Route::get('home', function () {
-    return view('home');
-})->name('home');
 
 Route::get('category', function () {
     return view('category');

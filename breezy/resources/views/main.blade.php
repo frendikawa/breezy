@@ -140,7 +140,7 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="{{ route('profil.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
+                            <a class="text-secondary mb-2" href="{{ route('profile.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
                                 akun</a>
                             <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
                             <form action="{{ route('logout') }}" method="POST">

@@ -19,11 +19,11 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'photo' => 'nullable|mimes:png,jpg,jpeg',
+            'name' => 'required|unique:products,name',
+            'photo' => 'nullable|mimes:png,jpg,jpeg|image',
             'description' => 'required',
             'price' => 'required|numeric|min:1000', // Harga harus numeric dan tidak boleh kurang dari 0
-            'category_id' => 'required',
+            'category_id' => 'not_in:""',
             'stock' => 'required|integer|min:0', // Stock harus integer dan tidak boleh kurang dari 0
         ];
     }
@@ -32,12 +32,13 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama tidak boleh kosong',
+            'name.unique'=>'Nama produk telah terpakai',
             'photo.mimes' => 'Foto hanya diperbolehkan png, jpg dan jpeg',
             'description.required' => 'Deskripsi tidak boleh kosong',
             'price.required' => 'Harga tidak boleh kosong',
             'price.numeric' => 'Harga harus berupa angka',
             'price.min' => 'Harga tidak boleh kurang dari :min',
-            'category_id.required' => 'Kategori tidak boleh kosong',
+            'category_id.not_in' => 'Kategori tidak boleh kosong',
             'stock.required' => 'Stock tidak boleh kosong',
             'stock.integer' => 'Stock harus berupa angka bulat',
             'stock.min' => 'Stock tidak boleh kurang dari 0',
