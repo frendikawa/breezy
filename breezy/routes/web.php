@@ -35,12 +35,10 @@ Route::get('home', function () {
 })->name('home')->middleware('verified');
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('contact', function () {
     return view('contact');
 })->name('contact');
-
 
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('product',ProductController::class);
@@ -51,6 +49,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('review',ReviewController::class);
 });
 Route::middleware(['auth','verified'])->group(function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
     route::resource('profile',ProfileController::class);
     Route::resource('troli',CartController::class);
 });

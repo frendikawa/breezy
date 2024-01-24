@@ -62,7 +62,7 @@
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari..">
+                                    <input type="text" class="form-control" placeholder="Cari.." name='search' value="{{request()->search}}">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
@@ -71,25 +71,27 @@
                                 </div>
                             </form>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                @if (Auth::user()->role == 'admin')
-                                    <a href="{{ route('order.index') }}" class="btn px-0 ml-3">
-                                        <i class="fa-solid fa-clipboard-list"></i>
-                                        @php
-                                            $totalData = \App\Models\Payment::all()->count();
-                                        @endphp
-                                        <span class="badge text-secondary border border-secondary rounded-circle"
-                                            style="padding-bottom: 2px;">{{ $totalData }}</span>
-                                    </a>
-                                @else
-                                    <a href="{{ route('troli.index') }}" class="btn px-0 ml-3">
-                                        <i class="fas fa-shopping-cart text-primary"></i>
-                                        @php
-                                            $userId = Auth::id();
-                                            $totalData = \App\Models\Cart::where('user_id', $userId)->count();
-                                        @endphp
-                                        <span class="badge text-secondary border border-secondary rounded-circle"
-                                            style="padding-bottom: 2px;">{{ $totalData }}</span>
-                                    </a>
+                                @if(Auth::check())
+                                    @if (Auth::user()->role == 'admin')
+                                        <a href="{{ route('order.index') }}" class="btn px-0 ml-3">
+                                            <i class="fa-solid fa-clipboard-list"></i>
+                                            @php
+                                                $totalData = \App\Models\Payment::all()->count();
+                                            @endphp
+                                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                                style="padding-bottom: 2px;">{{ $totalData }}</span>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('troli.index') }}" class="btn px-0 ml-3">
+                                            <i class="fas fa-shopping-cart text-primary"></i>
+                                            @php
+                                                $userId = Auth::id();
+                                                $totalData = \App\Models\Cart::where('user_id', $userId)->count();
+                                            @endphp
+                                            <span class="badge text-secondary border border-secondary rounded-circle"
+                                                style="padding-bottom: 2px;">{{ $totalData }}</span>
+                                        </a>
+                                    @endif
                                 @endif
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
@@ -151,7 +153,7 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="{{ route('profil.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
+                            <a class="text-secondary mb-2" href="{{ route('profile.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
                                 akun</a>
                             <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
                             <form action="{{ route('logout') }}" method="POST">

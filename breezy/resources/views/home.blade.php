@@ -166,7 +166,7 @@
                             <form action="{{ route('troli.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}">
+                                {{-- <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}"> --}}
                                 <button type="submit" class="btn btn-outline-dark btn-square">
                                     <i class="fa fa-shopping-cart"></i></a>
                                 </button>
