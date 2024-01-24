@@ -38,32 +38,6 @@
                                 </form>
                             </div>
                         </div>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <div class="modal fade" id="delete{{ $product->id }}" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi
-                                                        penghapusan?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Apakah anda yakin ingin menghapus {{ $product->name }}?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-danger">Yakin</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">{{ $product->name }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
@@ -80,6 +54,31 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="delete{{ $product->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi hapus</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                <div class="modal-body">
+                                    Apakah anda yakin ingin menghapus {{ $product->name }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-danger">Yakin</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                 <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">

@@ -15,7 +15,7 @@
                         <div class="text col-md-12">
                             <h5 class="card-title">{{ $item->product->name }}</h5>
                             <p class="card-text">Rp. {{ number_format($item->product->price, 0, ',', '.') }}</p>
-                            {{-- <p class="card-text"><small class="text-muted">{{ $item->created_at->diffForHumans() }}</small></p> --}}
+                            <p class="card-text"><small class="text-muted">{{ $item->created_at->diffForHumans() }}</small></p>
                         </div>
                         <div class="col-md-1">
                             <button type="button" class="btn btn-close" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}"></button>

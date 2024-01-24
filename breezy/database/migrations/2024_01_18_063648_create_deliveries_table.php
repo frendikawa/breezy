@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained();
+            $table->foreignId('cart_id')->constrained();
             $table->enum('method',['reguler','express'])->default('reguler');
             $table->text('address');
             $table->timestamps();
