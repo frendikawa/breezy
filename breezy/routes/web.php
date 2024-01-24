@@ -25,16 +25,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->group(function() {
-    Auth::routes([
-        'verify'=>true,
-    ]);
+Route::get('/', function () {
+    return view('home');
 });
+Route::group(['middleware' => ['auth', 'role: admin']], function(){
+    return 'admin';
+}); 
+
+Auth::routes();
 
 Route::get('home', function () {
     return view('home');
 })->name('home')->middleware('verified');
-Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/', function() {
     return view('home');
