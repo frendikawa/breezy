@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('category',CategoryController::class);
     Route::resource('delivery',DeliveryController::class);
     Route::resource('detail',DetailController::class);
-    Route::resource('payment',PaymentController::class);
+    Route::resource('order',PaymentController::class);
     Route::resource('review',ReviewController::class);
 });
 Route::middleware(['auth','verified'])->group(function () {

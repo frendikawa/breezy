@@ -71,15 +71,26 @@
                                 </div>
                             </form>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="{{ route('troli.index') }}" class="btn px-0 ml-3">
-                                    <i class="fas fa-shopping-cart text-primary"></i>
-                                    @php
-                                        $userId = Auth::id();
-                                        $totalData = \App\Models\Cart::where('user_id', $userId)->count();
-                                    @endphp
-                                    <span class="badge text-secondary border border-secondary rounded-circle"
-                                        style="padding-bottom: 2px;">{{ $totalData }}</span>
-                                </a>
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="{{ route('order.index') }}" class="btn px-0 ml-3">
+                                        <i class="fa-solid fa-clipboard-list"></i>
+                                        @php
+                                            $totalData = \App\Models\Payment::all()->count();
+                                        @endphp
+                                        <span class="badge text-secondary border border-secondary rounded-circle"
+                                            style="padding-bottom: 2px;">{{ $totalData }}</span>
+                                    </a>
+                                @else
+                                    <a href="{{ route('troli.index') }}" class="btn px-0 ml-3">
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                        @php
+                                            $userId = Auth::id();
+                                            $totalData = \App\Models\Cart::where('user_id', $userId)->count();
+                                        @endphp
+                                        <span class="badge text-secondary border border-secondary rounded-circle"
+                                            style="padding-bottom: 2px;">{{ $totalData }}</span>
+                                    </a>
+                                @endif
                                 <div class="btn-group" style="position: relative; left: 4px;">
                                     @if (Auth::check())
                                         <div class="dropdown">
