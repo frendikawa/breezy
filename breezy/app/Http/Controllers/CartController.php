@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $trolis = Cart::where('user_id', Auth()->id())->get();
+        return view('troli', compact('trolis'));
     }
 
     /**
@@ -28,13 +29,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cart::create($request->all());
+
+        return redirect()->back()->with('success', 'Produk ditambahkan ke dalam troli.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Cart $cart)
     {
         //
     }
@@ -42,7 +45,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -50,7 +53,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -58,8 +61,9 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Cart $cart)
     {
-        //
+        $cart->delete();
+        return to_route('cart.index')->with('success', 'Berhasil menghapus dari troli anda.');
     }
 }

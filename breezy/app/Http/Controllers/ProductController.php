@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function show(String $id)
     {
-        //
+        
     }
 
     /**
@@ -81,8 +81,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-
-
         $product = Product::find($id);
         Storage::disk('public')->delete($product->photo);
         $product->delete();

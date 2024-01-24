@@ -1,17 +1,15 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\TroliController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->group(function() {
-    Auth::routes([
-        'verify'=>true,
-    ]);
-});
+Auth::routes([
+    'verify'=>true,
+]);
 
 Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
@@ -52,7 +48,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
 });
 Route::middleware(['auth','verified'])->group(function () {
     route::resource('profile',ProfileController::class);
-    Route::resource('troli',TroliController::class);
+    Route::resource('troli',CartController::class);
 });
 Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
 Route::get('product', [ProductController::class, 'index'])->name('product.index');
