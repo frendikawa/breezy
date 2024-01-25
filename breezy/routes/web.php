@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified','role:admin'])->group(function () {
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
     route::resource('profile',ProfileController::class);
+    Route::resource('order',PaymentController::class);
     Route::resource('troli',CartController::class);
 });
 Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');

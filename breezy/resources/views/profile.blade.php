@@ -4,9 +4,9 @@
         <div class="card">
             <div class="card-body d-flex">
                 <div class="text">
-                    <p>Nama: {{ str_pad(str_repeat('*', 3), strlen($user->email)) . substr($user->email, 3) }}</p>
+                    <p><img src="{{ asset('storage/' . $user->photo) }}" alt="ini foto profil anda" width="100" height="100" class="rounded-circle"></p>
+                    <p>Nama: {{ $user->name }}</p>
                     <p>Email: {{ $user->email }}</p>
-                    <p>Password: {{str_repeat('*',strlen($user->password))}}</p>
                     <!-- Button trigger modal -->
                 </div>
             </div>
@@ -25,9 +25,14 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('profile.update', $user->id) }}" method="POST">
+                            <form action="{{ route('profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Foto Profil</label>
+                                    <input type="file" name="photo" id="" class="form-control">
+                                </div>
 
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -53,21 +58,15 @@
                                     <label for="">Password baru</label>
                                 </div>
                                 <div class="form-floating mt-3">
-                                    <input type="password" name="password_confirmation" id="" class="form-control" placeholder="konfirmasi password">
+                                    <input type="password" name="password_confirmation" id="" class="form-control"
+                                        placeholder="konfirmasi password">
                                     <label for="">Konfirmasi password</label>
                                 </div>
-
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
-
-                            {{-- <div class="mt-3"><input type="text" name="name" id="" class="form-control"
-                                        placeholder="Nama: " value="{{ $user->name }}"></div>
-                                {{-- <div class="mt-3"><input type="password" name="password" id="" class="form-control" value="{{$user->password}}"></div>
-                            <div class="mt-3"></div>
-                            <div class="mt-3"></div> --}}
                         </div>
                     </div>
                 </div>

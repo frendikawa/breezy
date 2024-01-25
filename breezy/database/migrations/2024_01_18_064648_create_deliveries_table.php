@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained();
+            $table->foreignId('payment_id')->constrained();
             $table->enum('method',['reguler','express'])->default('reguler');
             $table->integer('price');
             $table->text('address');

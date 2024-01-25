@@ -53,15 +53,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
-            'name.required'  => 'Nama harus diisi.',
-            'name.max'  => 'Nama maksimal :max karakter.',
-            'email.required'  => 'Email harus diisi.',
-            'email.email'  => 'Pastikan format email anda benar!.',
-            'email.max'  => 'Email maksimal :max karakter.',
-            'email.unique'  => 'Email sudah terdaftar.',
-            'password.required'  => 'Password harus diisi.',
-            'password.min'  => 'Password minimal :min karakter.',
-            'password.confirmed'  => 'Konfirmasi password tidak sesuai.',
+            'name.required' => 'Nama harus diisi.',
+            'name.max' => 'Nama maksimal :max karakter.',
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Pastikan format email anda benar!.',
+            'email.max' => 'Email maksimal :max karakter.',
+            'email.unique' => 'Email sudah terdaftar.',
+            'password.required' => 'Password harus diisi.',
+            'password.min' => 'Password minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
         ]);
     }
 
@@ -75,6 +75,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'photo' => '',
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

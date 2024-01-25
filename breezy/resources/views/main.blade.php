@@ -62,7 +62,8 @@
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari.." name='search' value="{{request()->search}}">
+                                    <input type="text" class="form-control" placeholder="Cari.." name='search'
+                                        value="{{ request()->search }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
@@ -71,7 +72,7 @@
                                 </div>
                             </form>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                @if(Auth::check())
+                                @if (Auth::check())
                                     @if (Auth::user()->role == 'admin')
                                         <a href="{{ route('order.index') }}" class="btn px-0 ml-3">
                                             <i class="fa-solid fa-clipboard-list"></i>
@@ -97,13 +98,20 @@
                                     @if (Auth::check())
                                         <div class="dropdown">
                                             <a href="{{ route('profile.index') }}">
-                                                <i class="fa-solid fa-circle-user"
-                                                    style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                                                @if (Auth::user()->photo)
+                                                    <img src="{{ asset('storage/' . Auth::user()->photo) }}"
+                                                        alt="" height="45" width="45"
+                                                        class="rounded-circle overflow-hidden">
+                                                @else
+                                                    <i class="fa-solid fa-circle-user"
+                                                        style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                                                @endif
                                             </a>
                                             <div class="dropdown-content">
                                                 <form action="{{ route('logout') }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="text-primary" style=" padding-left: 10px; border:none; background: none;">Keluar</button>
+                                                    <button type="submit" class="text-primary"
+                                                        style=" padding-left: 10px; border:none; background: none;">Keluar</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -153,13 +161,16 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Akun saya</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="{{ route('profile.index') }}"><i class="fa fa-angle-right mr-2"></i>Lihat
+                            <a class="text-secondary mb-2" href="{{ route('profile.index') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Lihat
                                 akun</a>
-                            <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="{{ route('troli.index') }}"><i
+                                    class="fa fa-angle-right mr-2"></i>Keranjang</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="text-secondary mb-2" style="background: none; border:none; "><i
-                                    class="fa fa-angle-right mr-2"></i>Keluar</button>
+                                <button type="submit" class="text-secondary mb-2"
+                                    style="background: none; border:none; "><i
+                                        class="fa fa-angle-right mr-2"></i>Keluar</button>
                             </form>
                         </div>
                     </div>

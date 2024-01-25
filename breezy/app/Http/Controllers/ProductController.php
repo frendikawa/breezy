@@ -68,6 +68,7 @@ class ProductController extends Controller
             $photo = $request->file('photo');
             $data['photo'] = Str::random(20) . '.' . $photo->getClientOriginalExtension();
             Storage::disk('public')->put($data['photo'], file_get_contents($photo));
+            Storage::disk('public')->delete($product->photo);
         } else {
             $data['photo'] = $product->photo;
         }

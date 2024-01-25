@@ -27,7 +27,7 @@
                                     data-bs-target="#detail{{ $product->id }}">
                                     <i class="fa fa-eye"></i>
                                 </button>
-                                
+                                @if (Auth::check() && Auth()->user()->role == 'user')
                                 <form action="{{ route('troli.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -36,6 +36,7 @@
                                         <i class="fa fa-shopping-cart"></i></a>
                                     </button>
                                 </form>
+                                @endif
                             </div>
                         </div>
                         <div class="text-center py-4">

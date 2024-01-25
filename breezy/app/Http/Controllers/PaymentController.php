@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -11,7 +13,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        return 'ini halaman order';
     }
 
     /**
@@ -27,9 +29,14 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
+        $data=[
+            'cart_id'=>$request->cart_id
+        ];
+        Payment::create($data);
+        return redirect()->back()->with('success','berhasil membeli barang');
+    }
+    
     /**
      * Display the specified resource.
      */

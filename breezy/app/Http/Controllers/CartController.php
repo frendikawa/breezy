@@ -63,9 +63,11 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $cart)
-    {
+    public function destroy(String $id)
+    {   
+
+        $cart = Cart::find($id);
         $cart->delete();
-        return to_route('cart.index')->with('success', 'Berhasil menghapus dari troli anda.');
+        return redirect()->back()->with('success', 'Berhasil menghapus dari troli anda.');
     }
 }
