@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('confirmations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cart_id')->constrained();
-            $table->enum('method',['cash','cashless'])->default('cash');
             $table->enum('confirm', ['Belum diterima','Sudah diterima'])->default('Belum diterima');
-            $table->integer('proof')->nullable();
             $table->enum('status',['Pesanan dibuat','Pesanan disetujui','Sedang dikemas','Dalam perjalanan','Selesai'])->default('Pesanan dibuat');
-            $table->timestamp('orderDate')->nullable();
-            $table->timestamp('receivedDate')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('confirmations');
     }
 };

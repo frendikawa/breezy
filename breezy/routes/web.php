@@ -30,11 +30,9 @@ Auth::routes([
 
 Auth::routes();
 
-Route::get('home', function () {
-    return view('home');
-})->name('home')->middleware('verified');
-
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function() {
+    return view('landing');
+})->middleware('guest')->name('landing');
 
 Route::get('contact', function () {
     return view('contact');
