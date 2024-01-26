@@ -36,6 +36,10 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('admin', function () {
+    return view('admin');
+})->name('admin');
+
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
