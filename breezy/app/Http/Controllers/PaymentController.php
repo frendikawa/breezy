@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Confirmation;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
 {
@@ -30,9 +31,24 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+
+        $data = $request->all();
+        $photo = $request->file('photo');
+        $data['photo'] = Str::random(20) . '.' . $photo->getClientOriginalExtension();
+        Storage::disk('public')->put($data['photo'], file_get_contents($photo));
+        Product::create($data);
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
+    }
+
+
+
+        $file=$request->proof;
+        dd($file);
         foreach ($request->cart_ids as $cartId) {
             Payment::create([
                 'cart_id' => $cartId,
+                'total'=>$request->total,
+                'proof'=>'wkwk'
             ]);
         }
         return redirect()->back()->with('success', 'Pembayaran berhasil');
