@@ -59,29 +59,55 @@
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa fa-dollar"></i> Checkout
                 </button>
+                <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pembelian</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            @foreach ($trolis as $item)
-                            <input type="hidden" name="cart_ids[]" id="" value="{{$item->id}}">
-                            @endforeach
                             <div class="modal-body">
-                                <p>Konfirmasi pembelian?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Beli</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                <p>Konfirmasi pembelian barang dibawah:</p>
+                                <table style="width: 31vw">
+                                    <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @foreach ($trolis as $key => $item)
+                                            <tr>
+                                                <input type="hidden" name="cart_ids[]" id=""
+                                                    value="{{ $item->id }}">
+                                                <td>{{ ++$key . '. ' }}</td>
+                                                <td>{{ $item->product->name }}</td>
+                                                <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
+                                                <td>x{{ $item->quantity }}</td>
+                                            </tr>
+                                        @endforeach
+                                </table>
+                                <br>
+                                @php
+                                    $totalPrice = 0;
+                                    foreach ($trolis as $item) {
+                                        $totalPrice += $item->product->price;
+                                    }
+                                @endphp
+                                <p>Total: Rp. {{ number_format($totalPrice, 0, ',', '.') }}</p>
+                                <input type="hidden" name="total" value="{{ $totalPrice }}">
+                                <div class="mb-3">
+                                    <label for="proof">Upload bukti pembayaran</label>
+                                    <input type="file" name="proof" id="proof" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Beli</button>
+                                </div>
+            </form>
         </div>
-        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </form>
     </div>
 @endsection

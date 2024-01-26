@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cart_id')->constrained();
             $table->integer('total');
-            $table->string('proof')->nullable();
+            $table->string('proof');
             $table->timestamps();
         });
     }
