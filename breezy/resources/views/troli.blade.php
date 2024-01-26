@@ -6,8 +6,7 @@
                 <div class="row g-0 p-3 ">
                     <div class="col-md-2">
                         <div class="d-flex align-items-center">
-                            <input type="checkbox" name="product_id" value="{{ $item->product_id }}" class="ml-2 mr-4"
-                                style="transform: scale(1.5);">
+                            
                             <img src="{{ asset('storage/' . $item->product->photo) }}" width="150px"
                                 class="img-fluid rounded-start" alt="{{ $item->product->name }}">
                         </div>
@@ -19,37 +18,6 @@
                                 <p class="card-text">Rp. {{ number_format($item->product->price, 0, ',', '.') }}</p>
                                 {{-- <p class="card-text"><small class="text-muted">{{ $item->created_at->diffForHumans() }}</small></p> --}}
                             </div>
-                            <form action="{{ route('order.store') }}" method="POST">
-                                @csrf
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal{{ $item->id }}">
-                                    <i class="fa fa-money-bill"></i>
-                                </button>
-                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <label for="" class="form-label">Konfirmasi melakukan pembayaran
-                                                    untuk produk {{ $item->product->name }}? <br> total nominal yang perlu
-                                                    dibayar adalah {{ $item->product->price }}</label>
-                                                    <input type="hidden" name="cart_id" id="" value="{{$item->product->id}}">
-                                                    </select>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-warning"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Bayar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-close" data-bs-toggle="modal"
                                     data-bs-target="#delete{{ $item->id }}"></button>
@@ -84,5 +52,30 @@
                 </div>
             </div>
         @endforeach
+        <div class="container">
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fa fa-dollar"></i> Checkout
+              </button>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Konfirmasi pembelian?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        </div>
     </div>
 @endsection

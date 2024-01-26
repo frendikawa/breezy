@@ -344,7 +344,9 @@
                     </div>
                 </div>
             @endforeach
-
+            <div class="d-flex justify-content-center">
+                {{ $products->links('pagination::bootstrap-5') }}
+            </div>
 
             <!-- Button trigger modal -->
             @if (Auth::check() && Auth()->user()->role == 'admin')
