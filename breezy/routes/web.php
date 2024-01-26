@@ -41,7 +41,6 @@ Route::get('contact', function () {
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
-    Route::resource('delivery',DeliveryController::class);
     Route::resource('detail',DetailController::class);
     Route::resource('order',PaymentController::class);
     Route::resource('review',ReviewController::class);

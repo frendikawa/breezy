@@ -6,7 +6,7 @@
                 <div class="row g-0 p-3 ">
                     <div class="col-md-2">
                         <div class="d-flex align-items-center">
-                            
+
                             <img src="{{ asset('storage/' . $item->product->photo) }}" width="150px"
                                 class="img-fluid rounded-start" alt="{{ $item->product->name }}">
                         </div>
@@ -41,7 +41,8 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <h4 class="text-center text-dark">Apakah Anda yakin ingin menghapus "{{ $item->product->name }}" ?</h4>
+                                <h4 class="text-center text-dark">Apakah Anda yakin ingin menghapus
+                                    "{{ $item->product->name }}" ?</h4>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">tutup</button>
@@ -53,29 +54,34 @@
             </div>
         @endforeach
         <div class="container">
-
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="fa fa-dollar"></i> Checkout
-              </button>
-
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <form action="{{ route('order.store') }}" method="POST">
+                @csrf
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="fa fa-dollar"></i> Checkout
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            @foreach ($trolis as $item)
+                            <input type="hidden" name="cart_ids[]" id="" value="{{$item->id}}">
+                            @endforeach
+                            <div class="modal-body">
+                                <p>Konfirmasi pembelian?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Beli</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Konfirmasi pembelian?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
-
         </div>
+        </form>
     </div>
 @endsection
