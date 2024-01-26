@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('confirmations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cart_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->foreignId('payment_id')->constrained()->onDelete('cascade');
             $table->enum('confirm', ['Belum diterima','Sudah diterima'])->default('Belum diterima');
             $table->enum('status',['Pesanan dibuat','Pesanan disetujui','Sedang dikemas','Dalam perjalanan','Selesai'])->default('Pesanan dibuat');
             $table->timestamps();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Confirmation;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        foreach ($request->cart_ids as $cartId) {
+            Payment::create([
+                'cart_id' => $cartId,
+            ]);
+        }
+        return redirect()->back()->with('success', 'Pembayaran berhasil');
     }
 
     /**

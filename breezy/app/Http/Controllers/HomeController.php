@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::where('name','LIKE','%'.$request->search.'%')->get();
+        $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(8);
         $categories = Category::all();
         return view('home', compact('products', 'categories'));
     }
