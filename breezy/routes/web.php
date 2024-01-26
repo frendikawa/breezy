@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -30,9 +30,7 @@ Auth::routes([
 
 Auth::routes();
 
-Route::get('/', function() {
-    return view('landing');
-})->middleware('guest')->name('landing');
+Route::get('/', [LandingController::class, 'index'])->middleware('guest')->name('landing');
 
 Route::get('contact', function () {
     return view('contact');
@@ -41,7 +39,6 @@ Route::get('contact', function () {
 Route::middleware(['auth', 'verified','role:admin'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
-    Route::resource('delivery',DeliveryController::class);
     Route::resource('detail',DetailController::class);
     Route::resource('order',PaymentController::class);
     Route::resource('review',ReviewController::class);

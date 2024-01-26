@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Verifikasi email</title>
 </head>
-<body class="bg-primary">
+<body class="bg-light">
     <div class="pembungkus container bg-light" style="padding:11vw">
         <div class="left">
             <div class="wrapper">
