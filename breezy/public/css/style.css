@@ -2393,7 +2393,7 @@ fieldset:disabled a.btn {
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
   background-color: #1A5295;
-  border-color: #1A5295;
+  border-color: #fff;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -2887,6 +2887,7 @@ fieldset:disabled a.btn {
 .btn-outline-dark {
   color: rgb(12, 95, 154);
   border-color: rgb(0, 17, 74);
+  border-radius: 5px;
 }
 
 .btn-outline-dark:hover {
@@ -3929,6 +3930,7 @@ input[type="button"].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  font-weight: 500;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -9474,7 +9476,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .btn.btn-primary {
-  color: #dfff !important;
+  color: #fff !important;
 }
 
 .btn-square {
@@ -9686,7 +9688,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .product-item .btn:hover {
-  color: #2087FF !important;
+  color: #fff !important;
 }
 
 .table.table-borderless thead tr,
@@ -9756,4 +9758,18 @@ a.text-dark:hover, a.text-dark:focus {
 
 .show-on-hover:hover {
   opacity: 1;
+}
+
+.landing{
+  font-size: 1.3vw;
+}
+
+.bttn{
+  border-color: #007bff;
+}
+.bttn:hover{
+  color: #007bff;
+}
+.bttn:active{
+  color: #007bff;
 }

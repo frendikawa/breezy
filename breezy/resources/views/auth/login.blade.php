@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Masuk</title>
 </head>
-<body class="bg-primary">
+<body class="bg-light">
     <div class="pembungkus container bg-light">
         <div class="left">
             <div class="wrapper">

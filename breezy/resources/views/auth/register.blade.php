@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Daftar</title>
 </head>
-<body class="bg-primary">
+<body class="bg-light">
     <div class="pembungkus regis container bg-light">
         <div class="left">
             <div class="wrapper">
