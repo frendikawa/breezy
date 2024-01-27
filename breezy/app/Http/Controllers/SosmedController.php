@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\History;
+use App\Models\Sosmed;
 use Illuminate\Http\Request;
 
-class HistoryController extends Controller
+class SosmedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class HistoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(History $history)
+    public function show(Sosmed $sosmed)
     {
         //
     }
@@ -42,7 +42,7 @@ class HistoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(History $history)
+    public function edit(Sosmed $sosmed)
     {
         //
     }
@@ -50,7 +50,7 @@ class HistoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, History $history)
+    public function update(Request $request, Sosmed $sosmed)
     {
         //
     }
@@ -58,7 +58,7 @@ class HistoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(History $history)
+    public function destroy(Sosmed $sosmed)
     {
         //
     }

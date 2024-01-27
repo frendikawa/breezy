@@ -12,9 +12,10 @@ body {
 }
 .sidebar{
     position: fixed;
+    overflow-y: auto;
     top: 0;
     height: 100%;
-    width: 260px;
+    width: 318px;
     padding: 20px 0;
     left: -30px;
     background-color: #e3f2fd;
@@ -26,7 +27,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 30px 16px;
-  width: 250px;
+  width: 300px;
   z-index: 9000;
 }
 .sidebar-content .list {

@@ -39,21 +39,21 @@
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
-              <a href="#" class="nav-link {{ request()->routeIs('admin') ? 'active' : '' }}">
-                <i class="bx bx-home-alt icon {{ request()->routeIs('admin') ? 'bx-tada' : '' }}"></i>
+              <a href="#" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <i class="bx bx-home-alt icon {{ request()->routeIs('dashboard') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Dasbor</span>
               </a>
             </li>
             <li class="list">
               <a href="#" class="nav-link">
-                <i class="bx bx-bell icon"></i>
-                <span class="link">Konfirmasi</span>
-              </a>
+                <i class="bx bx-camera icon"></i>
+                <span class="link">Postingan</span>
+                </a>
             </li>
             <li class="list">
-                <a href="#" class="nav-link">
-                  <i class="bx bx-category-alt icon"></i>
-                  <span class="link">Kategori</span>
+              <a href="#" class="nav-link">
+                <i class="bx bx-category-alt icon"></i>
+                <span class="link">Kategori</span>
                 </a>
             </li>
             <li class="list">
@@ -64,8 +64,32 @@
             </li>
             <li class="list">
               <a href="#" class="nav-link">
-                <i class="bx bx-history icon" ></i>
-                <span class="link">Riwayat</span>
+                <i class="bx bx-alarm-exclamation icon"></i>
+                <span class="link">Menunggu konfirmasi</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-badge-check icon" ></i>
+                <span class="link">Pesanan disetujui</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-x-circle icon" ></i>
+                <span class="link">Pesanan ditolak</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-car icon" ></i>
+                <span class="link">Dalam perjalanan</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bxs-badge-check icon" ></i>
+                <span class="link">Pesanan selesai</span>
               </a>
             </li>
           </ul>

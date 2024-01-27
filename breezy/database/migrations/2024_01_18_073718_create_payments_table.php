@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('cart_id')->constrained();
             $table->integer('total');
             $table->string('proof');
+            $table->enum('status',['Menunggu konfirmasi','Pesanan disetujui','Pesanan ditolak','Dalam perjalanan','Selesai'])->default('Menunggu konfirmasi');
             $table->timestamps();
         });
     }
