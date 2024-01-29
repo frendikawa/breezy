@@ -52,14 +52,14 @@
                 </a>
             </li>
             <li class="list">
-              <a href="{{ route('category.index') }}" class="nav-link">
-                <i class="bx bx-category-alt icon"></i>
+              <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.index') ? 'active' : '' }}">
+                <i class="bx bx-category-alt icon {{ request()->routeIs('category.index') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Kategori</span>
                 </a>
             </li>
             <li class="list">
-              <a href="{{route('product.index')}}" class="nav-link">
-                <i class='bx bxs-shopping-bags icon'></i>
+              <a href="{{ route('product.index') }}" class="nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">
+                <i class='bx bxs-shopping-bags icon {{ request()->routeIs('product.index') ? 'bx-tada' : '' }}'></i>
                 <span class="link">Produk</span>
               </a>
             </li>
