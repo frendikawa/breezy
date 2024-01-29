@@ -58,7 +58,7 @@
                 </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
+              <a href="{{route('product.index')}}" class="nav-link">
                 <i class='bx bxs-shopping-bags icon'></i>
                 <span class="link">Produk</span>
               </a>

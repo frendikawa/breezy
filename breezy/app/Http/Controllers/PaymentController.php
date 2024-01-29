@@ -32,13 +32,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
-        $photo = $request->file('photo');
-        $data['photo'] = Str::random(20) . '.' . $photo->getClientOriginalExtension();
-        Storage::disk('public')->put($data['photo'], file_get_contents($photo));
-        Product::create($data);
-        return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
-    }
+        
 
 
 

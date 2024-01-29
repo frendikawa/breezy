@@ -30,9 +30,10 @@ Auth::routes([
 
 Auth::routes();
 
-Route::get('/', [LandingController::class, 'index'])->middleware('guest')->name('landing');
 
 Route::middleware(['auth','verified'])->group(function () {
+    Route::resource('product',ProductController::class);
+    Route::resource('category',CategoryController::class);
     Route::middleware(['user'])->group(function () {
         Route::resource('review',ReviewController::class);
         Route::get('home', [HomeController::class, 'index'])->name('home');
@@ -40,13 +41,13 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::resource('order',PaymentController::class);
         Route::resource('troli',CartController::class);
         Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
-        Route::get('product', [ProductController::class, 'index'])->name('product.index');
-        Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+        // Route::get('product', [ProductController::class, 'index'])->name('product.index');
+        // Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     });
     
     Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
-        Route::resource('product',ProductController::class);
-        Route::resource('category',CategoryController::class);
     });
 });
+
+Route::get('/', [LandingController::class, 'index'])->name('landing');

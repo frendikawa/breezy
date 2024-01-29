@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         if (auth()->user()->role == 'admin') {
             return view('admin.category', compact('categories'));
         } else {

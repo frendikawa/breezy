@@ -55,9 +55,6 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <a href="{{ route('contact') }}"
-                                class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak
-                                kami</a>
                         </div>
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
@@ -154,8 +151,6 @@
                                     class="fa fa-angle-right mr-2"></i>Beranda</a>
                             <a class="text-secondary mb-2" href="{{ route('product.index') }}"><i
                                     class="fa fa-angle-right mr-2"></i>Produk kami</a>
-                            <a class="text-secondary mb-2" href="{{ route('contact') }}"><i
-                                    class="fa fa-angle-right mr-2"></i>Kontak kami</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">

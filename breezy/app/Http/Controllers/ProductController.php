@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(8);
         $categories = Category::all();
         if (auth()->user()->role == 'admin') {
-            return view('admin.product', compact('product', 'categpries'));
+            return view('admin.product', compact('products', 'categories'));
         } else {
             return view('product', compact('products', 'categories'));
         }
