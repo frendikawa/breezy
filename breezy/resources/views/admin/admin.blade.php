@@ -25,9 +25,10 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />    
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -51,7 +52,7 @@
                 </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
+              <a href="{{ route('category.index') }}" class="nav-link">
                 <i class="bx bx-category-alt icon"></i>
                 <span class="link">Kategori</span>
                 </a>
@@ -92,6 +93,17 @@
                 <span class="link">Pesanan selesai</span>
               </a>
             </li>
+            <li class="list">
+              <a href="{{ route('logout') }}" class="nav-link" 
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+                <i class="bx bx-log-out icon" ></i>
+                <span class="link">Keluar</span>
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+            </li>
           </ul>
         </div>
     </div>
@@ -125,6 +137,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 
 </html>

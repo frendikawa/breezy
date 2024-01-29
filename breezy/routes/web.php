@@ -43,6 +43,7 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::get('product', [ProductController::class, 'index'])->name('product.index');
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     });
+    
     Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
         Route::resource('product',ProductController::class);

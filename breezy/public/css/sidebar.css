@@ -15,9 +15,8 @@ body {
     overflow-y: auto;
     top: 0;
     height: 100%;
-    width: 318px;
+    width: 300px;
     padding: 20px 0;
-    left: -30px;
     background-color: #e3f2fd;
     box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
 }
@@ -27,7 +26,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: 30px 16px;
-  width: 300px;
+  width: 280px;
   z-index: 9000;
 }
 .sidebar-content .list {
