@@ -92,7 +92,7 @@
                                         <div class="p-4 md:p-5 space-y-4">
                                             @csrf
                                             @method('PATCH')
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <input type="file"
                                                     class=" @error('photo') is-invalid @enderror rounded-lg"
                                                     id="floatingInput" placeholder="photo" name="photo"
@@ -103,7 +103,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <input type="text"
                                                     class="form-control @error('name') is-invalid @enderror rounded-lg"
                                                     id="floatingInput" placeholder="nama" name="name"
@@ -115,7 +115,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <input type="text"
                                                     class="form-control @error('description') is-invalid @enderror rounded-lg"
                                                     id="floatingInput" placeholder="kategori" name="description"
@@ -127,7 +127,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <input type="text"
                                                     class="form-control @error('price') is-invalid @enderror rounded-lg"
                                                     id="floatingInput" placeholder="harga" name="price"
@@ -139,7 +139,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <input type="text"
                                                     class="form-control @error('stock') is-invalid @enderror rounded-lg"
                                                     id="floatingInput" placeholder="stok" name="stock"
@@ -151,7 +151,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="form-floating">
+                                            <div class="form-floating mt-3">
                                                 <select name="category_id" id="" class="form-control">
                                                     <option value="">- Kategori -</option>
                                                     @foreach ($categories as $category)
@@ -242,7 +242,7 @@
                         <div class="p-4 md:p-5 space-y-1">
                             @csrf
                             <div class="modal-body">
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <input type="file" class=" @error('photo') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="photo" name="photo"
                                         value="{{ old('photo') }}">
@@ -252,7 +252,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <input type="text"
                                         class="form-control @error('name') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="nama" name="name"
@@ -264,7 +264,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <input type="text"
                                         class="form-control @error('description') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="kategori" name="description"
@@ -276,7 +276,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <input type="text"
                                         class="form-control @error('price') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="harga" name="price"
@@ -288,7 +288,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <input type="text"
                                         class="form-control @error('stock') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="stok" name="stock"
@@ -300,7 +300,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-floating">
+                                <div class="form-floating mt-3">
                                     <select name="category_id" id="" class="form-control">
                                         <option value="">- Kategori -</option>
                                         @foreach ($categories as $item)
