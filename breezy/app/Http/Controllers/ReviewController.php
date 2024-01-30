@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ReviewController extends Controller
 {
@@ -11,7 +16,14 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $userId = auth()->user()->id;
+        $products = Payment::where('status', 'selesai')
+            ->whereHas('cart', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->paginate(4);
+
+        return view('review', compact('products'));
     }
 
     /**
@@ -27,7 +39,14 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $review=Review::create([
+            'user_id'=>auth()->user()->id,
+            'product_id'=>$request->product_id,
+            'review'=>$request->ulasan,
+            'rating'=>$request->rating
+        ]);
+        return redirect()->back()->with('success','Berhasil mengulas produk');
     }
 
     /**

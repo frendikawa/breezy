@@ -52,11 +52,12 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::get('product', [ProductController::class, 'index'])->name('product.index');
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     });
+    Route::resource('product',ProductController::class);
+    Route::resource('category',CategoryController::class);
+    Route::resource('review',ReviewController::class);
     
     Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
-        Route::resource('product',ProductController::class);
-        Route::resource('category',CategoryController::class);
         Route::resource('upload',CarouselController::class);
         Route::resource('confirmation', ConfirmationController::class);
         Route::patch('tolak/{payment}', [ConfirmationController::class, 'tolak'])->name('payment.reject');

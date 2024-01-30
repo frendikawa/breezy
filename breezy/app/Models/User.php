@@ -47,6 +47,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     
     public function troli() {
-        return $this->hasMany(Troli::class);
+        return $this->hasMany(Cart::class);
     }
 }

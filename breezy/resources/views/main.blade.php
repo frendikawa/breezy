@@ -46,15 +46,8 @@
                                 class="nav-item nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Beranda</a>
                             <a href="{{ route('product.index') }}"
                                 class="nav-item nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">Produk</a>
-                            <div class="nav-item dropdown">
-                                <a href="{{ route('category.index') }}" style="cursor: default"
-                                    class="nav-link {{ request()->routeIs('category') ? 'active' : '' }}">Kategori</a>
-                                <div class="dropdown-content">
-                                    @foreach (DB::table('categories')->get() as $item)
-                                        <a href="{{ route('category.show', $item->id) }}">{{ $item->name }}</a>
-                                    @endforeach
-                                </div>
-                            </div>
+                            <a href="{{ route('review.index') }}"
+                                class="nav-item nav-link {{ request()->routeIs('review.index') ? 'active' : '' }}">Review</a>
                         </div>
                         <div class="d-flex">
                             <form action="" style="padding-right: 10px">
@@ -84,7 +77,9 @@
                                             <i class="fas fa-shopping-cart text-primary"></i>
                                             @php
                                                 $userId = Auth::id();
-                                                $totalData = \App\Models\Cart::where('user_id', Auth()->id())->where('status', 'simpan')->count();
+                                                $totalData = \App\Models\Cart::where('user_id', Auth()->id())
+                                                    ->where('status', 'simpan')
+                                                    ->count();
                                             @endphp
                                             <span class="badge text-secondary border border-secondary rounded-circle"
                                                 style="padding-bottom: 2px;">{{ $totalData }}</span>

@@ -31,7 +31,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -55,7 +55,29 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        // Validate and update payment status
+        $this->validate($request, [
+            // Add your validation rules
+        ]);
+
+        // Your existing logic...
+
+        // Deduct product stock
+        $this->reduceProductStock($payment->cart->product, $payment->cart->quantity);
+
+        return redirect()->back()->with('success', 'Payment status updated.');
+    }
+
+    // Helper method to reduce product stock
+    private function reduceProductStock($product, $quantity)
+    {
+        if ($product->stock >= $quantity) {
+            $product->decrement('stock', $quantity);
+        } else {
+            // Handle insufficient stock (you can add logging or other actions)
+            // You might want to throw an exception or handle this case based on your application logic
+            // Example: throw new \Exception('Insufficient stock for product: ' . $product->name);
+        }
     }
 
     /**

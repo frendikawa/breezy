@@ -11,7 +11,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -51,17 +53,23 @@
                 <div class="container-fluid pt-5">
                     <div class="row px-xl-5">
                         <div class="col-lg-8">
-                            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0"
+                                data-ride="carousel">
                                 <div class="carousel-inner product-offer">
                                     <div class="carousel-item position-relative active" style="height: 430px;">
-                                        <img class="position-absolute w-100 h-100" src="img/shop.jpg" style="object-fit: cover;">
-                                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                        <img class="position-absolute w-100 h-100" src="img/shop.jpg"
+                                            style="object-fit: cover;">
+                                        <div
+                                            class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                             <div class="p-3" style="max-width: 700px;">
                                                 <div class="title">
-                                                    <h1 class="display-4 text-white animate__animated animate__fadeInDown" style="margin-bottom: -10px">Breezy</h1>
+                                                    <h1 class="display-4 text-white animate__animated animate__fadeInDown"
+                                                        style="margin-bottom: -10px">Breezy</h1>
                                                     <p class="animate__animated animate__fadeInUp">handmade</p>
                                                 </div>
-                                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Karya handmade eksklusif, gaya unik & kualitas terbaik. Temukan keindahan setiap detail!</p>
+                                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Karya
+                                                    handmade eksklusif, gaya unik & kualitas terbaik. Temukan keindahan
+                                                    setiap detail!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +87,7 @@
                             </div>
                             <div class="product-offer mb-30" style="height: 200px;">
                                 <img class="img-fluid" src="img/necklace.jpg" alt="">
-                                <div class="offer-text">  
+                                <div class="offer-text">
                                     <h6 class="text-white text-uppercase">Kalung</h6>
                                     <h5 class="text-white mb-3">Orange Statement Lotus</h5>
                                     <a href="" class="btn btn-primary">Beli sekarang</a>
@@ -92,33 +100,39 @@
         </div>
     </section>
     <section id="produk"><br>
-    <br>
-    <br><br>
+        <br>
+        <br><br>
         <div class="container-fluid mt-3 pb-3">
-            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produk Kami</span></h2>
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
+                    class="bg-secondary pr-3">Produk Kami</span></h2>
             <div class="row px-xl-5">
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                         <div class="product-item bg-light mb-4">
                             <div class="product-img position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
+                                <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}"
+                                    alt="">
                             </div>
                             <div class="text-center py-4">
-                                <a class="h6 text-decoration-none text-truncate" href="">{{ $product->name }}</a>
+                                <a class="h6 text-decoration-none text-truncate"
+                                    href="">{{ $product->name }}</a>
                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                     <h5>Rp.{{ number_format($product->price, 0, ',', '.') }}</h5>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center mb-1">
-                                    <button type="button" class="bttn btn-outline-dark btn-square mx-1" data-bs-toggle="modal" data-bs-target="#detail{{ $product->id }}"><i class="fa fa-eye"></i>
+                                    <button type="button" class="bttn btn-outline-dark btn-square mx-1"
+                                        data-bs-toggle="modal" data-bs-target="#detail{{ $product->id }}"><i
+                                            class="fa fa-eye"></i>
                                     </button>
-                                    <button data-bs-toggle="modal" data-bs-target="#rating{{ $product->id }}" class="btn btn-primary">Lihat penilaian</button>
+                                    <button data-bs-toggle="modal" data-bs-target="#review{{ $product->id }}"
+                                        class="btn btn-outline-dark btn-square"><i class="fas fa-star"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -127,25 +141,27 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                        <div class="card-body d-flex align-items-center">
-                                            <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="300"
-                                                class="mr-5">
-                                            <div class="text">
-                                                <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
-                                                <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
-                                                <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}</p>
-                                                <p><b class="text-primary">Harga:</b> Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
-                                                <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
-                                            </div>
+                                    <div class="card-body d-flex align-items-center">
+                                        <img src="{{ asset('storage/' . $product->photo) }}" alt=""
+                                            width="300" class="mr-5">
+                                        <div class="text">
+                                            <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
+                                            <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
+                                            <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}
+                                            </p>
+                                            <p><b class="text-primary">Harga:</b>
+                                                Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
+                                            <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
                                         </div>
+                                    </div>
                                 </div>
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="modal fade" id="rating{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="review{{ $product->id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -154,19 +170,15 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                        <div class="card-body d-flex align-items-center">
-                                            <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="300"
-                                                class="mr-5">
-                                            <div class="text">
-                                                <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
-                                                <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
-                                                <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}</p>
-                                                <p><b class="text-primary">Harga:</b> Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
-                                                <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
-                                            </div>
+                                    <div class="card-body d-flex align-items-center">
+                                        <img src="{{ asset('storage/' . $product->photo) }}" alt=""
+                                            width="300" class="mr-5">
+                                        <div class="text">
+                                            <p>Nama Pengguna: {{$product}}</p>
                                         </div>
+                                    </div>
                                 </div>
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                     </div>
@@ -179,17 +191,21 @@
         <br>
         <br>
         <div class="container-fluid py-5 bg-light">
-            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-light pr-3">Tentang Kami</span></h2>
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
+                    class="bg-light pr-3">Tentang Kami</span></h2>
             <div class="row px-xl-5 px-5">
                 <div class="d-flex px-5">
                     <div class="container p-2 px-5">
-                        <p class="px-3  ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                            Quam ad nesciunt eius architecto porro voluptatem quaerat consectetur inventore.    
-                            Doloribus facere minus laborum id nisi fuga odio, fugiat pariatur est, 
-                            exercitationem aliquam quaerat illum aspernatur eveniet, dicta alias iure eligendi ad. <br><br>
-                            Perferendis vitae ea error, repellendus assumenda, explicabo, 
-                            tempora tempore aperiam delectus non minus dolores nihil odio quo rem modi mollitia in quod. <br><br>
-                            Fugiat ex officia provident corporis dolorum sequi consectetur accusantium ab aspernatur porro nemo vero, 
+                        <p class="px-3  ">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Quam ad nesciunt eius architecto porro voluptatem quaerat consectetur inventore.
+                            Doloribus facere minus laborum id nisi fuga odio, fugiat pariatur est,
+                            exercitationem aliquam quaerat illum aspernatur eveniet, dicta alias iure eligendi ad.
+                            <br><br>
+                            Perferendis vitae ea error, repellendus assumenda, explicabo,
+                            tempora tempore aperiam delectus non minus dolores nihil odio quo rem modi mollitia in quod.
+                            <br><br>
+                            Fugiat ex officia provident corporis dolorum sequi consectetur accusantium ab aspernatur
+                            porro nemo vero,
                             exercitationem ratione temporibus eum?</p>
                     </div>
                 </div>
@@ -202,7 +218,8 @@
             <div class="d-flex">
                 <div class="container" style="width: 30vw;position:relative; left: -20vw;">
                     <h5 class="text-secondary text-uppercase mb-4">Halo Breelove</h5>
-                    <p class="mb-4">Breezy! Keindahan, keunikan, dan ketelitian dalam setiap sentuhan. Seni yang memikat, produk yang mempesona.</p>
+                    <p class="mb-4">Breezy! Keindahan, keunikan, dan ketelitian dalam setiap sentuhan. Seni yang
+                        memikat, produk yang mempesona.</p>
                 </div>
                 <div class="infos" style="position: relative; left: -5vw;">
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kepanjen, Malang</p>
