@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -20,7 +21,7 @@ class ProductController extends Controller
         $categories = Category::all();
         if (auth()->user()->role == 'admin') {
             return view('admin.product', compact('products', 'categories'));
-        } else {
+        } else if(auth()->user()->role == 'user'){
             return view('product', compact('products', 'categories'));
         }
     }

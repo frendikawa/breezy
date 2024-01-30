@@ -14,6 +14,7 @@ class Payment extends Model
         'total',
         'proof',
         'status',
+        'address'
     ];
 
     public function cart() {

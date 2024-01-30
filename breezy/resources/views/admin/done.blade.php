@@ -72,7 +72,7 @@
                                                     <p>Harga satuan: Rp. {{ number_format($item->cart->product->price, 0,',','.') }}</p>
                                                     <p>Jumlah yang dibeli: {{ $item->cart->quantity }}</p>
                                                     <p>Total yang harus dibayar: Rp. {{ number_format($item->total, 0,',','.') }}</p>
-                                                    <p>Alamat pengiriman: Rp. {{ number_format($item->total, 0,',','.') }}</p>
+                                                    <p>Alamat pengiriman: {{$item->address}}</p>
                                                     <p>Tanggal selesai: {{ \Carbon\Carbon::parse($item->update_at)->isoFormat('D MMMM Y') }}</p>
                                                 </div>
                                             </div>

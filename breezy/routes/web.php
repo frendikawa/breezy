@@ -34,8 +34,9 @@ Auth::routes([
     'verify'=>true,
 ]);
 
-Auth::routes();
+// Auth::routes();
 
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::middleware(['auth','verified'])->group(function () {
     Route::resource('product',ProductController::class);
@@ -48,8 +49,8 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::resource('troli',CartController::class);
         Route::get('category/{category}', [CategoryController::class, 'show'])->name('category.show');
         Route::put('cart/update-multiple', [CartController::class, 'updateMultiple'])->name('cart.updateMultiple');
-        // Route::get('product', [ProductController::class, 'index'])->name('product.index');
-        // Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('product', [ProductController::class, 'index'])->name('product.index');
+        Route::get('category', [CategoryController::class, 'index'])->name('category.index');
     });
     
     Route::middleware(['admin'])->group(function () {
@@ -66,5 +67,3 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::resource('done', DoneController::class);
     });
 });
-
-Route::get('/', [LandingController::class, 'index'])->name('landing');

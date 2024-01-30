@@ -89,7 +89,7 @@
                                     @php
                                         $totalPrice = 0;
                                         foreach ($trolis as $item) {
-                                            $totalPrice += $item->product->price;
+                                            $totalPrice += $item->product->price*$item->quantity;
                                         }
                                     @endphp
                                     <p>Total: Rp. {{ number_format($totalPrice, 0, ',', '.') }}</p>
@@ -97,6 +97,10 @@
                                     <div class="mb-3">
                                         <label for="proof">Upload bukti pembayaran</label>
                                         <input type="file" name="proof" id="proof" class="form-control">
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" name="address" id="" class="form-control" placeholder="Alamat">
+                                        <label for="" class="form-label">Alamat</label>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
