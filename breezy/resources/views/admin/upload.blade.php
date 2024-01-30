@@ -2,9 +2,9 @@
 @section('content')
 <div class="position-absolute" style="left: 24vw; top: 3vw; width: 72vw;">
     <h2 class="section-title d-flex justify-content-between position-relative text-uppercase mb-4">
-        <span class="pr-3">Daftar Produk</span>
+        <span class="pr-3">Postingan</span>
         <button data-modal-target="add" data-modal-toggle="add" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-            Produk baru
+            Postingan baru
         </button>
     </h2>
     <div class="relative overflow-x-auto">

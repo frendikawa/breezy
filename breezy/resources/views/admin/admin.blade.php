@@ -82,14 +82,14 @@
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-car icon" ></i>
+              <a href="{{ route('way.index') }}" class="nav-link {{ request()->routeIs('way.index') ? 'active' : '' }}">
+                <i class="bx bx-car icon {{ request()->routeIs('way.index') ? 'bx-tada' : '' }}" ></i>
                 <span class="link">Dalam perjalanan</span>
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bxs-badge-check icon" ></i>
+              <a href="{{ route('done.index') }}" class="nav-link {{ request()->routeIs('done.index') ? 'active' : '' }}">
+                <i class="bx bxs-badge-check icon {{ request()->routeIs('done.index') ? 'bx-tada' : '' }}" ></i>
                 <span class="link">Pesanan selesai</span>
               </a>
             </li>

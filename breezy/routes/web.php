@@ -7,6 +7,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfirmationController;
+use App\Http\Controllers\DoneController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PaymentController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RejectController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +62,8 @@ Route::middleware(['auth','verified'])->group(function () {
         Route::patch('terima/{payment}', [ConfirmationController::class, 'terima'])->name('payment.terima');
         Route::resource('agree', AgreeController::class);
         Route::resource('reject', RejectController::class);
+        Route::resource('way', WayController::class);
+        Route::resource('done', DoneController::class);
     });
 });
 
