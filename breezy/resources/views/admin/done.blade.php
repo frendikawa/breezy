@@ -26,6 +26,7 @@
                         <th scope="col" class="px-6 py-3">
                             Bukti pembayaran
                         </th>
+                        <th>Tanggal selesai</th>
                         <th scope="col" class="px-6 py-3 rounded-e-lg">
                             Aksi
                         </th>
@@ -40,6 +41,7 @@
                             <td class="px-3 py-2 text-center">{{ $item->cart->quantity }}</td>
                             <td class="px-3 py-2">Rp. {{ number_format($item->cart->product->price, 0,',','.') }}</td>
                             <td class="px-3 py-2 d-flex justify-content-center"><img src="{{ asset('storage/'.$item->proof) }}" style="object-fit: cover; height: 80px; width: 80px"></td>
+                            <td>{{ \Carbon\Carbon::parse($item->update_at)->isoFormat('D MMMM Y') }}</td>
                             <td class="px-3 py-2">
                                 <button data-modal-target="see{{ $item->id }}" data-modal-toggle="see{{ $item->id }}" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center me-1 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-500" type="button">
                                     <i class="fa-regular fa-eye" style="font-size: 17px"></i>
@@ -71,6 +73,7 @@
                                                     <p>Jumlah yang dibeli: {{ $item->cart->quantity }}</p>
                                                     <p>Total yang harus dibayar: Rp. {{ number_format($item->total, 0,',','.') }}</p>
                                                     <p>Alamat pengiriman: Rp. {{ number_format($item->total, 0,',','.') }}</p>
+                                                    <p>Tanggal selesai: {{ \Carbon\Carbon::parse($item->update_at)->isoFormat('D MMMM Y') }}</p>
                                                 </div>
                                             </div>
                                             <div class="proof">

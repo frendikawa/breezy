@@ -15,22 +15,13 @@
                         No
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Foto produk
+                        Gambar postingan
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Nama produk
+                        Judul postingan
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Kategori    
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Harga/pcs
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Stok produk
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Deskripsi produk
+                        Deskripsi    
                     </th>
                     <th scope="col" class="px-6 py-3 rounded-e-lg">
                         Aksi
@@ -63,7 +54,7 @@
                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                        Edit kategori
+                                        EditPostingan
                                     </h3>
                                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit{{ $item->id }}">
                                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -77,7 +68,7 @@
                                       @method('PATCH')
                                       <div class="form-floating">
                                           <input type="text" class="form-control @error('name') is-invalid @enderror rounded-lg" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name', $item->name) }}">
-                                          <label for="floatingInput">Nama kategori</label>
+                                          <label for="floatingInput">NamaPostingan</label>
                                           @error('name')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
@@ -106,7 +97,7 @@
                                     <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                     </svg>
-                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin untuk menghapus kategori {{ $item->name }}?</h3>
+                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin untuk menghapusPostingan {{ $item->name }}?</h3>
                                     <form method="POST" action="{{ route('category.destroy', $item->id) }}">
                                         @csrf
                                         @method('DELETE')
@@ -129,7 +120,7 @@
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Kategori baru
+                       Postingan baru
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="add">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -144,7 +135,7 @@
                         <div class="modal-body">
                             <div class="form-floating">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror rounded-lg" id="floatingInput" placeholder="kategori" name="name" value="{{ old('name') }}">
-                                <label for="floatingInput">Nama kategori</label>
+                                <label for="floatingInput">NamaPostingan</label>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
