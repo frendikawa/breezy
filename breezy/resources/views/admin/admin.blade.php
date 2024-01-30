@@ -40,14 +40,14 @@
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
-              <a href="#" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+              <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="bx bx-home-alt icon {{ request()->routeIs('dashboard') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Dasbor</span>
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-camera icon"></i>
+              <a href="{{ route('upload.index') }}" class="nav-link {{ request()->routeIs('upload.index') ? 'active' : '' }}">
+                <i class="bx bx-camera icon {{ request()->routeIs('upload.index') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Postingan</span>
                 </a>
             </li>
@@ -64,20 +64,20 @@
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-alarm-exclamation icon"></i>
+              <a href="{{ route('confirmation.index') }}" class="nav-link {{ request()->routeIs('confirmation.index') ? 'active' : '' }}">
+                <i class="bx bx-alarm-exclamation icon {{ request()->routeIs('confirmation.index') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Menunggu konfirmasi</span>
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-badge-check icon" ></i>
+              <a href="{{ route('agree.index') }}" class="nav-link {{ request()->routeIs('agree.index') ? 'active' : '' }}">
+                <i class="bx bx-badge-check icon {{ request()->routeIs('agree.index') ? 'bx-tada' : '' }}" ></i>
                 <span class="link">Pesanan disetujui</span>
               </a>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-x-circle icon" ></i>
+              <a href="{{ route('reject.index') }}" class="nav-link {{ request()->routeIs('reject.index') ? 'active' : '' }}">
+                <i class="bx bx-x-circle icon {{ request()->routeIs('reject.index') ? 'bx-tada' : '' }}" ></i>
                 <span class="link">Pesanan ditolak</span>
               </a>
             </li>

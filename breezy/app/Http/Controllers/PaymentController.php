@@ -31,21 +31,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-
         
-
-
-
-        $file=$request->proof;
-        dd($file);
-        foreach ($request->cart_ids as $cartId) {
-            Payment::create([
-                'cart_id' => $cartId,
-                'total'=>$request->total,
-                'proof'=>'wkwk'
-            ]);
-        }
-        return redirect()->back()->with('success', 'Pembayaran berhasil');
     }
 
     /**

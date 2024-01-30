@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Carousel extends Model
 {
     use HasFactory;
+    protected $table = 'carousels';
+    protected $primaryKey = 'id';
+    protected $guarded = [];
+
+    public $incrementing = true;
+    public $timestamps = true;
 }

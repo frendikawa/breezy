@@ -13,5 +13,10 @@ class Payment extends Model
         'cart_id',
         'total',
         'proof',
+        'status',
     ];
+
+    public function cart() {
+        return $this->belongsTo(Cart::class);
+    }
 }

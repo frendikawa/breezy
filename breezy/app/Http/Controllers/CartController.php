@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CartController extends Controller
 {
@@ -14,7 +17,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $trolis = Cart::where('user_id', Auth()->id())->get();
+        $trolis = Cart::where('user_id', Auth()->id())->where('status', 'simpan')->get();
         return view('troli', compact('trolis'));
     }
 
@@ -57,7 +60,24 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+    }
+    
+    public function updateMultiple(Request $request){
+        foreach ($request->cart_ids as $id) {
+            Cart::where('id', $id)->update(['status' => 'beli']);
+        }
+        $file=$request->file('proof');
+        $bukti = Str::random(20) . '.' . $file->getClientOriginalExtension();
+        foreach ($request->cart_ids as $cartId) {
+            Payment::create([
+                'cart_id' => $cartId,
+                'total'=>$request->total,
+                'proof'=>$bukti
+            ]);
+        }
+        Storage::disk('public')->put($bukti, file_get_contents($file));
+        
+        return redirect()->back()->with('success', 'Pemesanan berhasil, silahkan tunggu konfirmasi.');
     }
 
     /**

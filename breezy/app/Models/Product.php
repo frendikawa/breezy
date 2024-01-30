@@ -23,7 +23,7 @@ class Product extends Model
     }
 
     public function troli() {
-        return $this->hasMany(Troli::class);
+        return $this->hasMany(Cart::class);
     }
 }
 

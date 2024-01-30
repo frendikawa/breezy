@@ -84,7 +84,7 @@
                                             <i class="fas fa-shopping-cart text-primary"></i>
                                             @php
                                                 $userId = Auth::id();
-                                                $totalData = \App\Models\Cart::where('user_id', $userId)->count();
+                                                $totalData = \App\Models\Cart::where('user_id', Auth()->id())->where('status', 'simpan')->count();
                                             @endphp
                                             <span class="badge text-secondary border border-secondary rounded-circle"
                                                 style="padding-bottom: 2px;">{{ $totalData }}</span>

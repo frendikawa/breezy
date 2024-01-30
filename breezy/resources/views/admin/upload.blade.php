@@ -38,7 +38,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $key=>$item)
+                @foreach ($carousels as $key=>$item)
                     <tr class="bg-white dark:bg-gray-800 text-center">
                         <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white text-base">{{ ++$key }}</th>
                         <td><img src="{{ asset('storage/'.$item->photo) }}" alt="{{ $item->name }}" class="py-3" style="object-fit: cover; width: 100px; height: 100px"></td>

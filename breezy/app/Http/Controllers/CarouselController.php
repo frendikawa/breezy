@@ -12,7 +12,8 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        //
+        $carousels = Carousel::all();
+        return view('admin.upload', compact('carousels'));
     }
 
     /**
