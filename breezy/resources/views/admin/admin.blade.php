@@ -40,16 +40,10 @@
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
-              <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="bx bx-home-alt icon {{ request()->routeIs('dashboard') ? 'bx-tada' : '' }}"></i>
+              <a href="{{ route('dashboard.index') }}" class="nav-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
+                <i class="bx bx-home-alt icon {{ request()->routeIs('dashboard.index') ? 'bx-tada' : '' }}"></i>
                 <span class="link">Dasbor</span>
               </a>
-            </li>
-            <li class="list">
-              <a href="{{ route('upload.index') }}" class="nav-link {{ request()->routeIs('upload.index') ? 'active' : '' }}">
-                <i class="bx bx-camera icon {{ request()->routeIs('upload.index') ? 'bx-tada' : '' }}"></i>
-                <span class="link">Postingan</span>
-                </a>
             </li>
             <li class="list">
               <a href="{{ route('category.index') }}" class="nav-link {{ request()->routeIs('category.index') ? 'active' : '' }}">

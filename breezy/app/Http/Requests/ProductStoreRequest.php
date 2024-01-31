@@ -4,13 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProductStoreRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-  
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -20,7 +15,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:products,name,except,id',
-            'photo' => 'nullable|mimes:png,jpg,jpeg|image',
+            'photo' => 'required|mimes:png,jpg,jpeg|image',
             'description' => 'required',
             'price' => 'required|numeric|min:1000', // Harga harus numeric dan tidak boleh kurang dari 0
             'category_id' => 'not_in:""',
@@ -33,6 +28,7 @@ class ProductRequest extends FormRequest
         return [
             'name.required' => 'Nama tidak boleh kosong',
             'name.unique'=>'Nama produk telah terpakai',
+            'photo.required' => 'Foto harus diisi',
             'photo.mimes' => 'Foto hanya diperbolehkan png, jpg dan jpeg',
             'description.required' => 'Deskripsi tidak boleh kosong',
             'price.required' => 'Harga tidak boleh kosong',

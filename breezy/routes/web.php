@@ -57,8 +57,10 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::resource('review',ReviewController::class);
     
     Route::middleware(['admin'])->group(function () {
-        Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
-        Route::resource('upload',CarouselController::class);
+        Route::resource('dashboard',CarouselController::class);
+        Route::post('dashboard/store', [CarouselController::class, 'sosmedStore'])->name('sosmed.store');
+        Route::put('dashboard/update', [CarouselController::class, 'sosmedUpdate'])->name('sosmed.update');
+        Route::delete('dashboard/delete', [CarouselController::class, 'sosmedDestroy'])->name('sosmed.destroy');
         Route::resource('confirmation', ConfirmationController::class);
         Route::patch('tolak/{payment}', [ConfirmationController::class, 'tolak'])->name('payment.reject');
         Route::patch('terima/{payment}', [ConfirmationController::class, 'terima'])->name('payment.terima');

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sosmed extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'icon',
+        'name',
+        'link',
+    ];
+
 }

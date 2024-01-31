@@ -76,7 +76,7 @@
                                     <div
                                         class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Edit kategori
+                                            Edit produk
                                         </h3>
                                         <button type="button"
                                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -92,10 +92,9 @@
                                         <div class="p-4 md:p-5 space-y-4">
                                             @csrf
                                             @method('PATCH')
-                                            <div class="form-floating mt-3">
-                                                <input type="file"
-                                                    class=" @error('photo') is-invalid @enderror rounded-lg"
-                                                    id="floatingInput" placeholder="photo" name="photo"
+                                            <div class="d-flex flex-column mt-3">
+                                                <label for="photo" class="mb-1">Foto produk</label>
+                                                <input type="file" class=" @error('photo') is-invalid @enderror rounded-lg" id="floatingInput" placeholder="photo" name="photo"
                                                     value="{{ old('photo') }}">
                                                 @error('photo')
                                                     <span class="invalid-feedback" role="alert">
@@ -225,7 +224,7 @@
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Kategori baru
+                            Produk baru
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -242,7 +241,8 @@
                         <div class="p-4 md:p-5 space-y-1">
                             @csrf
                             <div class="modal-body">
-                                <div class="form-floating mt-3">
+                                <div class="d-flex flex-column">
+                                    <label for="photo" class="mb-1">Foto produk</label>
                                     <input type="file" class=" @error('photo') is-invalid @enderror rounded-lg"
                                         id="floatingInput" placeholder="photo" name="photo"
                                         value="{{ old('photo') }}">
@@ -307,7 +307,7 @@
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                    <label for="floatingInput">Stok</label>
+                                    <label for="floatingInput">Kategori</label>
                                     @error('stock')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
