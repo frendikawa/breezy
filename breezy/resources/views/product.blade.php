@@ -4,7 +4,17 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produk
-                Kami</span></h2>
+                Kami </span><form action="" style="padding-right: 10px">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cari.." name='search'
+                            value="{{ request()->search }}">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form></h2>
         <div class="row px-xl-5">
             @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -32,6 +42,7 @@
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}">
+                                    <input type="hidden" name="quantity" id="" value="1">      
                                     <button type="submit" class="btn btn-outline-dark btn-square">
                                         <i class="fa fa-shopping-cart"></i></a>
                                     </button>
@@ -209,7 +220,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="d-flex justify-content-center">
+            <div class="justify-content-end">
                 {{ $products->links('pagination::bootstrap-5') }}
             </div>
 

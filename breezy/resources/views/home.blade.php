@@ -2,77 +2,39 @@
 
 @section('content')
     <!-- Carousel Start -->
-    <div class="container-fluid mb-3">
-        <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        {{-- <li data-target="#header-carousel" data-slide-to="0" class="active"></li> --}}
-                        {{-- <li data-target="#header-carousel" data-slide-to="1"></li>
-                        <li data-target="#header-carousel" data-slide-to="2"></li> --}}
-                    </ol>
-                    <div class="carousel-inner product-offer">
-                        <div class="carousel-item position-relative active" style="height: 430px;">
-                            <img class="position-absolute w-100 h-100" src="img/gelang1.jpg" style="object-fit: cover;">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Breezy</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet
-                                        lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                        href="#">do something</a>
+    <section id="beranda ">
+        <div class="py-5 bg-light ">
+            <div class="pt-5 ">
+                <div class="container-fluid pt-5 ">
+                    <div class="row px-xl-10">
+                        <div class="col-rg-1">
+                            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                                <div class="carousel-inner product-offer">
+                                    @foreach ($carousels as $key => $carousel)
+                                        <div class="carousel-item position-relative {{ $key == 0 ? 'active' : '' }}" style="height: 430px;">
+                                            <img class="position-absolute" src="{{asset('storage/'.$carousel->foto)}}" style="object-fit: cover;">
+                                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center text-center">
+                                                <div class="p-3" style="max-width: 700px;">
+                                                    <div class="title text-center">
+                                                        <h1 class="display-4 text-white animate__animated animate__fadeInDown" style="margin-bottom: -10px">Breezy</h1>
+                                                        <p class="animate__animated animate__fadeInUp">handmade</p>
+                                                    </div>
+                                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Karya handmade eksklusif, gaya unik & kualitas terbaik. Temukan keindahan setiap detail!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="justify-content-end mt-3">
+                                    {{ $carousels->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item position-relative" style="height: 430px;">
-                            <img class="position-absolute w-100 h-100" src="img/carousel-2.jpg" style="object-fit: cover;">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women
-                                        Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet
-                                        lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                        href="#">Beli sekarang</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item position-relative" style="height: 430px;">
-                            <img class="position-absolute w-100 h-100" src="img/carousel-3.jpg" style="object-fit: cover;">
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids
-                                        Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet
-                                        lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                                        href="#">Beli sekarang</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="img/bracelet.jpg" alt="">
-                    <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Gelang</h6>
-                        <h5 class="text-white mb-3">Special Offer</h5>
-                        <a href="" class="btn btn-primary">Beli sekarang</a>
-                    </div>
-                </div>
-                <div class="product-offer mb-30" style="height: 200px;">
-                    <img class="img-fluid" src="img/necklace.jpg" alt="">
-                    <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Kalung</h6>
-                        <h5 class="text-white mb-3">Orange Statement Lotus</h5>
-                        <a href="" class="btn btn-primary">Beli sekarang</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!-- Carousel End -->
 
     <!-- Featured Start -->
@@ -345,7 +307,7 @@
                     </div>
                 </div>
             @endforeach
-            <div class="d-flex justify-content-center">
+            <div class="justify-content-center">
                 {{ $products->links('pagination::bootstrap-5') }}
             </div>
 

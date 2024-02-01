@@ -8,6 +8,7 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
     <link href="{{ asset('img/icon.png') }}" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,50 +48,39 @@
         </div>
     </div>
 
-    <section id="beranda">
-        <div class="py-5 bg-light">
-            <div class="pt-5">
-                <div class="container-fluid pt-5">
-                    <div class="row px-xl-5">
-                        <div class="col-lg-8">
+    <section id="beranda ">
+        <div class="py-5 bg-light ">
+            <div class="pt-5 ">
+                <div class="container-fluid pt-5 ">
+                    <div class="row px-xl-11">
+                        <div class="col-lg-100">
                             <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0"
                                 data-ride="carousel">
                                 <div class="carousel-inner product-offer">
-                                    <div class="carousel-item position-relative active" style="height: 430px;">
-                                        <img class="position-absolute w-100 h-100" src="img/shop.jpg"
-                                            style="object-fit: cover;">
-                                        <div
-                                            class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                            <div class="p-3" style="max-width: 700px;">
-                                                <div class="title">
-                                                    <h1 class="display-4 text-white animate__animated animate__fadeInDown"
-                                                        style="margin-bottom: -10px">Breezy</h1>
-                                                    <p class="animate__animated animate__fadeInUp">handmade</p>
+                                    @foreach ($carousels as $key => $carousel)
+                                        <div class="carousel-item position-relative {{ $key == 0 ? 'active' : '' }}"
+                                            style="height: 430px;">
+                                            <img class="position-absolute w-100 h-100"
+                                                src="{{ asset('storage/' . $carousel->foto) }}"
+                                                style="object-fit: cover;">
+                                            <div
+                                                class="carousel-caption d-flex flex-column align-items-center justify-content-center text-center">
+                                                <div class="p-3" style="max-width: 700px;">
+                                                    <div class="title text-center">
+                                                        <h1 class="display-4 text-white animate__animated animate__fadeInDown"
+                                                            style="margin-bottom: -10px">Breezy</h1>
+                                                        <p class="animate__animated animate__fadeInUp">handmade</p>
+                                                    </div>
+                                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Karya
+                                                        handmade eksklusif, gaya unik & kualitas terbaik. Temukan
+                                                        keindahan setiap detail!</p>
                                                 </div>
-                                                <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Karya
-                                                    handmade eksklusif, gaya unik & kualitas terbaik. Temukan keindahan
-                                                    setiap detail!</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="product-offer mb-30" style="height: 200px;">
-                                <img class="img-fluid" src="img/bracelet.jpg" alt="">
-                                <div class="offer-text">
-                                    <h6 class="text-white text-uppercase">Gelang</h6>
-                                    <h5 class="text-white mb-3">Special Offer</h5>
-                                    <a href="" class="btn btn-primary">Beli sekarang</a>
-                                </div>
-                            </div>
-                            <div class="product-offer mb-30" style="height: 200px;">
-                                <img class="img-fluid" src="img/necklace.jpg" alt="">
-                                <div class="offer-text">
-                                    <h6 class="text-white text-uppercase">Kalung</h6>
-                                    <h5 class="text-white mb-3">Orange Statement Lotus</h5>
-                                    <a href="" class="btn btn-primary">Beli sekarang</a>
+                                <div class="justify-content-end mt-3">
+                                    {{ $carousels->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
@@ -104,7 +94,19 @@
         <br><br>
         <div class="container-fluid mt-3 pb-3">
             <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
-                    class="bg-secondary pr-3">Produk Kami</span></h2>
+                    class="bg-secondary pr-3">Produk Kami</span>
+                <form action="" style="padding-right: 10px">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cari.." name='search'
+                            value="{{ request()->search }}">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </h2>
             <div class="row px-xl-5">
                 @foreach ($products as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -174,7 +176,15 @@
                                         <img src="{{ asset('storage/' . $product->photo) }}" alt=""
                                             width="300" class="mr-5">
                                         <div class="text">
-                                            <p>Nama Pengguna: {{$product}}</p>
+                                            @if ($reviews->where('product_id', $product->id)->count() > 0)
+                                                @foreach ($reviews->where('product_id', $product->id) as $review)
+                                                    <p>Reviewer: {{ $review->user->name }}</p>
+                                                    <p>Review: {{ $review->review }}</p>
+                                                    <p>Rating: {{ $review->rating }}/5</p>
+                                                @endforeach
+                                            @else
+                                                <p>Belum ada ulasan untuk produk ini.</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -183,6 +193,9 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="justify-content-end">
+                    {{ $products->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </section>
@@ -206,7 +219,8 @@
                             <br><br>
                             Fugiat ex officia provident corporis dolorum sequi consectetur accusantium ab aspernatur
                             porro nemo vero,
-                            exercitationem ratione temporibus eum?</p>
+                            exercitationem ratione temporibus eum?
+                        </p>
                     </div>
                 </div>
             </div>
@@ -225,6 +239,12 @@
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kepanjen, Malang</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>Breezy@gmail.com</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+                    @foreach ($sosmeds as $sosmed)
+                        {{-- <img src="{{ asset('storage/' . $sosmed->icon) }}" alt="Your Image" width="32" height="32" aria-hidden="true"> --}}
+                        <span><i class="fa fa-user text-primary"></i></span>
+                        {{-- <img src="{{ asset('storage/' . $sosmed->icon) }}" alt="" class="bi"> --}}
+                        <a href="https://{{ $sosmed->link }}" class="btn btn-link">{{ $sosmed->name }}</a>
+                    @endforeach
                 </div>
             </div>
         </div>

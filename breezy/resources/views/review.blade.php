@@ -3,8 +3,8 @@
 @section('content')
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produk
-                Kami</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Review</span>
+        </h2>
         <div class="row px-xl-5">
             @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -15,7 +15,7 @@
                             <div class="product-action show-on-hover">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-dark btn-square" data-bs-toggle="modal"
-                                    data-bs-target="#review{{$product->cart->product->id}}">
+                                    data-bs-target="#review{{ $product->cart->product->id }}">
                                     <i class="fas fa-star"></i>
                                 </button>
                             </div>
@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="review{{$product->cart->product->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="review{{ $product->cart->product->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -50,21 +50,32 @@
                                 <form action="{{ route('review.store') }}" method="POST">
                                     @csrf
                                     <div class="floating-form">
-                                        <textarea name="ulasan" id="" cols="30" rows="10" class="form-control" placeholder="Ulasan"></textarea>
-                                        <input type="hidden" name="product_id" id="" value="{{$product->cart->product->id}}">
-                                        <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" step="1" required placeholder="Rating">
+                                        <textarea name="review" id="" cols="30" rows="10" class="form-control @error('review') is-invalid @enderror rounded"  placeholder="Review"></textarea>
+                                        @error('review')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{$message}}</strong>
+                                            </span>
+                                        @enderror
+                                        <input type="hidden" name="product_id" id=""
+                                            value="{{ $product->cart->product->id }}">
+                                        <input type="number" name="rating" id="" class="form-control @error ('rating') is-invalid @enderror mt-3 rounded" placeholder="Rating">
+                                        @error('rating')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
                             </form>
                         </div>
                     </div>
                 </div>
             @endforeach
-            <div class="d-flex justify-content-center">
+            <div class="justify-content-center">
                 {{ $products->links('pagination::bootstrap-5') }}
             </div>
             @if (Auth::check() && Auth()->user()->role == 'admin')

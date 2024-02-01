@@ -16,7 +16,8 @@
                             <div class="text col-md-12">
                                 <h5 class="card-title">{{ $item->product->name }}</h5>
                                 <p class="card-text">Rp. {{ number_format($item->product->price, 0, ',', '.') }}</p>
-                                <p class="card-text"><small class="text-muted">{{ $item->created_at->diffForHumans() }}</small></p>
+                                <p class="card-text"><small
+                                        class="text-muted">{{ $item->created_at->diffForHumans() }}</small></p>
                             </div>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-close" data-bs-toggle="modal"
@@ -52,65 +53,82 @@
                     </div>
                 </div>
             </div>
+        @endforeach
+        <form action="{{ route('cart.updateMultiple') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="card">
+                <div class="card-body mt-3 mb-3">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($trolis as $key => $item)
+                                <tr>
+                                    <input type="hidden" name="cart_ids[]" value="{{ $item->id }}">
+                                    <td>{{ ++$key }}</td>
+                                    <td>{{ $item->product->name }}</td>
+                                    <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
+                                    <td>
+                                        <input type="number" name="quantities[]" value="{{ $item->quantity }}"
+                                            class="form-control rounded @error('quantities.*') is-invalid @enderror"
+                                            id="quantity_{{ $item->id }}" data-price="{{ $item->product->price }}"
+                                            onchange="updateTotalPrice()">
+                                        @error('quantities.*')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-            @endforeach
-            <div class="container">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa fa-dollar"></i> Checkout
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Pembelian</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('cart.updateMultiple') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
-                                    <p>Konfirmasi pembelian barang dibawah:</p>
-                                    <table style="width: 31vw">
-                                                @foreach ($trolis as $key => $item)
-                                                    <tr>
-                                                        <input type="hidden" name="cart_ids[]" id=""
-                                                            value="{{ $item->id }}">
-                                                        <td>{{ ++$key . '. ' }}</td>
-                                                        <td>{{ $item->product->name }}</td>
-                                                        <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
-                                                        <td>x{{ $item->quantity }}</td>
-                                                    </tr>
-                                                @endforeach
-                                    </table>
-                                    <br>
-                                    @php
-                                        $totalPrice = 0;
-                                        foreach ($trolis as $item) {
-                                            $totalPrice += $item->product->price*$item->quantity;
-                                        }
-                                    @endphp
-                                    <p>Total: Rp. {{ number_format($totalPrice, 0, ',', '.') }}</p>
-                                    <input type="hidden" name="total" value="{{ $totalPrice }}">
-                                    <div class="mb-3">
-                                        <label for="proof">Upload bukti pembayaran</label>
-                                        <input type="file" name="proof" id="proof" class="form-control">
-                                    </div>
-                                    <div class="form-floating">
-                                        <input type="text" name="address" id="" class="form-control" placeholder="Alamat">
-                                        <label for="" class="form-label">Alamat</label>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Beli</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    @php
+                        $totalPrice = 0;
+                        foreach ($trolis as $item) {
+                            $totalPrice += $item->product->price * $item->quantity;
+                        }
+                    @endphp
+
+                    <label for="" class="form-label mt-3">Total Harga: <span
+                            id="totalPrice">{{ $totalPrice }}</span></label>
+                    <div class="mb-3">
+                        <label for="proof">Upload bukti pembayaran</label>
+                        <input type="file" name="proof" id="proof" class="form-control">
                     </div>
+                    <div class="form-floating">
+                        <input type="text" name="address" id="" class="form-control" placeholder="Alamat">
+                        <label for="" class="form-label" name='address'>Alamat</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded mt-3 justify-content-end">
+                        <i class="fa fa-dollar"></i> Checkout
+                    </button>
+                </div>
             </div>
+        </form>
     </div>
+    </div>
+    <script>
+        function updateTotalPrice() {
+            let total = 0;
+
+            @foreach ($trolis as $item)
+                let quantityElement = document.getElementById('quantity_{{ $item->id }}');
+                let quantity = quantityElement.value;
+                let price = quantityElement.getAttribute('data-price');
+                total += quantity * price;
+            @endforeach
+
+            document.getElementById('totalPrice').innerText = total;
+        }
+    </script>
 @endsection

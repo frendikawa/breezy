@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewStoreRequest;
 use App\Models\Payment;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -37,13 +38,14 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ReviewStoreRequest $request)
     {
 
+        
         $review=Review::create([
             'user_id'=>auth()->user()->id,
             'product_id'=>$request->product_id,
-            'review'=>$request->ulasan,
+            'review'=>$request->review,
             'rating'=>$request->rating
         ]);
         return redirect()->back()->with('success','Berhasil mengulas produk');

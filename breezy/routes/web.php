@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RejectController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SosmedController;
 use App\Http\Controllers\WayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,9 +59,10 @@ Route::middleware(['auth','verified'])->group(function () {
     
     Route::middleware(['admin'])->group(function () {
         Route::resource('dashboard',CarouselController::class);
-        Route::post('dashboard/store', [CarouselController::class, 'sosmedStore'])->name('sosmed.store');
-        Route::put('dashboard/update', [CarouselController::class, 'sosmedUpdate'])->name('sosmed.update');
-        Route::delete('dashboard/delete', [CarouselController::class, 'sosmedDestroy'])->name('sosmed.destroy');
+        Route::resource('sosmed',SosmedController::class);
+        // Route::post('dashboard/store', [CarouselController::class, 'sosmedStore'])->name('sosmed.store');
+        // Route::put('dashboard/update', [CarouselController::class, 'sosmedUpdate'])->name('sosmed.update');
+        // Route::delete('dashboard/delete', [CarouselController::class, 'sosmedDestroy']);
         Route::resource('confirmation', ConfirmationController::class);
         Route::patch('tolak/{payment}', [ConfirmationController::class, 'tolak'])->name('payment.reject');
         Route::patch('terima/{payment}', [ConfirmationController::class, 'terima'])->name('payment.terima');

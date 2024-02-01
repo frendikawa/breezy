@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateMultipleRequest;
 use App\Models\Cart;
 use App\Models\Payment;
 use App\Models\Product;
@@ -18,78 +19,54 @@ class CartController extends Controller
      */
     public function index()
     {
-        $trolis = Cart::where('user_id', Auth()->id())->where('status', 'simpan')->get();
+        $trolis = Cart::where('user_id', Auth::id())->where('status', 'simpan')->get();
         return view('troli', compact('trolis'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    // Cek apakah produk sudah ada di keranjang pengguna
-    $existingCart = Cart::where('user_id', Auth()->id())
-        ->where('product_id', $request->product_id)
-        ->where('status', 'simpan')
-        ->first();
-
-    // Dapatkan informasi produk
-    $product = Product::findOrFail($request->product_id);
-    $requestedQuantity = $request->quantity;
-
-    // Validasi stok produk
-    if ($existingCart) {
-        $availableStock = $product->stock - $existingCart->quantity;
-
-        if ($availableStock >= $requestedQuantity) {
-            // Jika produk sudah ada, tambahkan kuantitas
-            $existingCart->update([
-                'quantity' => $existingCart->quantity + $requestedQuantity,
-            ]);
-
-            return redirect()->back()->with('success', 'Kuantitas produk di keranjang diperbarui.');
-        } else {
-            return redirect()->back()->with('error', 'Stok produk tidak mencukupi.');
-        }
-    } else {
-        if ($product->stock >= $requestedQuantity) {
-            // Jika produk belum ada, tambahkan ke keranjang
-            Cart::create([
-                'user_id' => Auth()->id(),
-                'product_id' => $request->product_id,
-                'quantity' => $requestedQuantity,
-                'status' => 'simpan',
-            ]);
-
-            return redirect()->back()->with('success', 'Produk ditambahkan ke dalam troli.');
-        } else {
-            return redirect()->back()->with('error', 'Stok produk tidak mencukupi.');
-        }
-    }
-}
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cart $cart)
     {
-        //
-    }
+        // Check if the product is already in the user's cart
+        $existingCart = Cart::where('user_id', Auth::id())
+            ->where('product_id', $request->product_id)
+            ->where('status', 'simpan')
+            ->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cart $cart)
-    {
-        //
+        // Get product information
+        $product = Product::findOrFail($request->product_id);
+        $requestedQuantity = $request->quantity;
+
+        // Validate product stock
+        if ($existingCart) {
+            $availableStock = $product->stock - $existingCart->quantity;
+
+            if ($availableStock >= $requestedQuantity) {
+                // If the product is already in the cart, update the quantity
+                $existingCart->update([
+                    'quantity' => $existingCart->quantity + $requestedQuantity,
+                ]);
+
+                return redirect()->back()->with('success', 'Cart quantity updated.');
+            } else {
+                return redirect()->back()->with('error', 'Insufficient product stock.');
+            }
+        } else {
+            if ($product->stock >= $requestedQuantity) {
+                // If the product is not in the cart, add it to the cart
+                Cart::create([
+                    'user_id' => Auth::id(),
+                    'product_id' => $request->product_id,
+                    'quantity' => $requestedQuantity,
+                    'status' => 'simpan',
+                ]);
+
+                return redirect()->back()->with('success', 'Product added to the cart.');
+            } else {
+                return redirect()->back()->with('error', 'Insufficient product stock.');
+            }
+        }
     }
 
     /**
@@ -97,35 +74,55 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
+        // Update cart details if needed
     }
-    
-    public function updateMultiple(Request $request){
-        foreach ($request->cart_ids as $id) {
-            Cart::where('id', $id)->update(['status' => 'beli']);
-        }
-        $file=$request->file('proof');
-        $bukti = Str::random(20) . '.' . $file->getClientOriginalExtension();
-        foreach ($request->cart_ids as $cartId) {
-            Payment::create([
-                'cart_id' => $cartId,
-                'total'=>$request->total,
-                'proof'=>$bukti,
-                'address'=>$request->address
+
+    /**
+     * Update multiple resources in storage.
+     */
+    public function updateMultiple(UpdateMultipleRequest $request)
+    {
+        $total = 0;
+        foreach ($request->quantities as $index => $quantity) {
+            $cart = Cart::find($request->cart_ids[$index]);
+            $stock=$cart->product->stock;
+            $request->validate([
+                'quantities.*'=>'numeric|max:'.$stock
+            ],[
+                'quantities.*.max'=>'stok tidak cukup'
             ]);
+            // Update cart quantity
+            $cart->update(['quantity' => $quantity]);
+            $total += $quantity * $cart->product->price;
+
+            // Update status to 'beli'
+            $cart->update(['status' => 'beli']);
+
+            // Create payment
+            $file = $request->file('proof');
+            $bukti = Str::random(20) . '.' . $file->getClientOriginalExtension();
+
+            Payment::create([
+                'cart_id' => $cart->id,
+                'total' => $total,
+                'proof' => $bukti,
+                'address' => $request->address
+            ]);
+
+            // Store payment proof
+            Storage::disk('public')->put($bukti, file_get_contents($file));
         }
-        Storage::disk('public')->put($bukti, file_get_contents($file));
-        
-        return redirect()->back()->with('success', 'Pemesanan berhasil, silahkan tunggu konfirmasi.');
+
+        return redirect()->back()->with('success', 'Order successful, please wait for confirmation.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(String $id)
-    {   
-
+    public function destroy(string $id)
+    {
         $cart = Cart::find($id);
         $cart->delete();
-        return redirect()->back()->with('success', 'Berhasil menghapus dari troli anda.');
+        return redirect()->back()->with('success', 'Successfully removed from your cart.');
     }
 }

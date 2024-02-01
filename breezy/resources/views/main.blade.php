@@ -10,6 +10,8 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/icon.png') }}" rel="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,17 +52,7 @@
                                 class="nav-item nav-link {{ request()->routeIs('review.index') ? 'active' : '' }}">Review</a>
                         </div>
                         <div class="d-flex">
-                            <form action="" style="padding-right: 10px">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari.." name='search'
-                                        value="{{ request()->search }}">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </form>
+                            
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                                 @if (Auth::check())
                                     @if (Auth::user()->role == 'admin')

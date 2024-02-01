@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('cart_id')->constrained();
             $table->integer('total');
             $table->string('proof');
+            $table->string('address');
             $table->string('status')->default('Menunggu konfirmasi');
             $table->timestamps();
         });

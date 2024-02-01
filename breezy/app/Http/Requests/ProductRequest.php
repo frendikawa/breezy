@@ -19,7 +19,7 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:products,name,except,id',
+            'name' => 'required',
             'photo' => 'nullable|mimes:png,jpg,jpeg|image',
             'description' => 'required',
             'price' => 'required|numeric|min:1000', // Harga harus numeric dan tidak boleh kurang dari 0
@@ -32,7 +32,6 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Nama tidak boleh kosong',
-            'name.unique'=>'Nama produk telah terpakai',
             'photo.mimes' => 'Foto hanya diperbolehkan png, jpg dan jpeg',
             'description.required' => 'Deskripsi tidak boleh kosong',
             'price.required' => 'Harga tidak boleh kosong',

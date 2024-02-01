@@ -82,6 +82,7 @@ class CarouselController extends Controller
 
     public function sosmedDestroy($id)
     {
+        return 'holaa';
         $sosmed = Sosmed::findOrFail($id);
         Storage::disk('public')->delete($sosmed->icon);
         $sosmed->delete();

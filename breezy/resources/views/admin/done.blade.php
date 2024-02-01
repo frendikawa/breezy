@@ -91,7 +91,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-3 d-flex justify-content-end">
+            <div class="mt-3 justify-content-end">
                 {{ $done->links('pagination::bootstrap-5') }}
             </div>
     </div>

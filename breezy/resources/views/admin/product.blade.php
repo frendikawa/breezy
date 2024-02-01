@@ -216,6 +216,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-justify-content-end">
+                {{ $products->links('pagination::bootstrap-5') }}
+            </div>
         </div>
 
         <div id="add" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"

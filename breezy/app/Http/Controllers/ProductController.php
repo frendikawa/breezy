@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(8);
+        $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(4);
         $categories = Category::all();
         if (auth()->user()->role == 'admin') {
             return view('admin.product', compact('products', 'categories'));
