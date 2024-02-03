@@ -9,7 +9,7 @@ class RejectController extends Controller
 {
     public function index()
     {
-        $rejects = Payment::where('status', 'ditolak')->latest()->paginate(5);
+        $rejects = Payment::query()->with('detailPayments')->whereHas('detailPayments')->where('status', 'ditolak')->latest()->paginate(5);
         return view('admin.reject', compact('rejects'));
     }
 }

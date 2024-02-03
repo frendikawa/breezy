@@ -1,27 +1,51 @@
 @extends('main')
 @section('content')
-    <div class="container py-5 h-100">
+<section class="vh-100" style="background-color: #ffffff;">
+    <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-12 col-xl-4">
-
-                <div class="card" style="border-radius: 15px;">
-                    <div class="card-body text-center">
-                        <div class="mt-3 mb-4">
-                            <img src="{{ asset('storage/' . $user->photo) }}" class="rounded-circle img-fluid"
-                                style="width: 150px;" />
+            <div class="col col-md-9 col-lg-7 col-xl-5">
+                <div class="card shadow-lg" style="border-radius: 15px; background-color: #ffffff;">
+                        <div class="card-body p-4">
+                            <div class="d-flex text-black">
+                                <div class="flex-shrink-0">
+                                    <img src="{{ asset('storage/' . $user->photo) }}" alt="Generic placeholder image"
+                                        class="img-fluid" style="width: 180px; border-radius: 10px;">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="mb-1">{{ $user->name }}</h5>
+                                    <p class="mb-2 pb-1" style="color: #2b2a2a;">Pembeli</p>
+                                    <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                        style="background-color: #efefef;">
+                                        <div>
+                                            <p class="small text-muted mb-1">Pembelian</p>
+                                            <p class="mb-0">
+                                                {{ \App\Models\Cart::where('user_id', $user->id)->where('status', 'beli')->count() }}
+                                            </p>
+                                        </div>
+                                        <div class="px-3">
+                                            <p class="small text-muted mb-1">Rating</p>
+                                            <p class="mb-0">{{ \App\Models\Review::where('user_id', $user->id)->count() }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex pt-1">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#updateprofile{{ $user->id }}">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="mb-2">{{ $user->name }}</h4>
-                        <p class="text-muted mb-4">{{ $user->email }}</p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#updateprofile{{ $user->id }}">
-                            Update
-                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
+    </section>
+
+
+
+
 
     <div class="modal fade" id="updateprofile{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

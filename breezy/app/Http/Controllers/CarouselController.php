@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\ProductChart;
 use App\Http\Requests\CarouselStoreRequest;
 use App\Http\Requests\StoreSosmedRequest;
 use App\Http\Requests\UpdateSosmedRequest;
@@ -13,11 +14,11 @@ use Illuminate\Support\Str;
 
 class CarouselController extends Controller
 {
-    public function index()
+    public function index(ProductChart $productChart)
     {
         $carousels = Carousel::all();
         $sosmeds = Sosmed::all();
-        return view('admin.dashboard', compact('carousels', 'sosmeds'));
+        return view('admin.dashboard', compact('carousels', 'sosmeds'), ['chart' => $productChart->build()]);
     }
 
     public function store(CarouselStoreRequest $request)

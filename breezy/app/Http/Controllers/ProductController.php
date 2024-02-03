@@ -18,14 +18,30 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(4);
+        $query = Product::query();
+
+        // Search by product name
+        if ($request->has('search')) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+
+        // Filter by category
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Paginate the results
+        $products = $query->paginate(4);
         $categories = Category::all();
+
+        // Check user role and return the appropriate view
         if (auth()->user()->role == 'admin') {
             return view('admin.product', compact('products', 'categories'));
-        } else if(auth()->user()->role == 'user'){
+        } else if (auth()->user()->role == 'user') {
             return view('product', compact('products', 'categories'));
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,9 +67,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id)
+    public function show(string $id)
     {
-        
+
     }
 
     /**

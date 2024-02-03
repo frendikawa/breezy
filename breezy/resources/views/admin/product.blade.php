@@ -88,10 +88,10 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    <form action="{{ route('product.update', $item->id) }}" method="POST">
+                                    <form action="{{ route('product.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                                         <div class="p-4 md:p-5 space-y-4">
                                             @csrf
-                                            @method('PATCH')
+                                            @method('PUT')
                                             <div class="d-flex flex-column mt-3">
                                                 <label for="photo" class="mb-1">Foto produk</label>
                                                 <input type="file" class=" @error('photo') is-invalid @enderror rounded-lg" id="floatingInput" placeholder="photo" name="photo"

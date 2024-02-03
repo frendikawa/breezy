@@ -40,6 +40,15 @@
                 </a>
             </div>
         </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    {!! $chart->container() !!}</div>
+            </div>
+        </div>
+
+
+
         <div class="container">
             <div class="d-flex align-items-center justify-content-between">
                 <h2 class="text-uppercase">Sosial media</h2>
@@ -121,7 +130,7 @@
                                                         <input type="text"
                                                             class="form-control @error('link') is-invalid @enderror rounded-lg"
                                                             id="floatingInput" placeholder="Link sosial media"
-                                                            name="link" value="{{ old('link',$item->link) }}">
+                                                            name="link" value="{{ old('link', $item->link) }}">
                                                         <label for="floatingTextarea">Link</label>
                                                         @error('link')
                                                             <span class="invalid-feedback" role="alert">
@@ -499,4 +508,8 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
 @endsection

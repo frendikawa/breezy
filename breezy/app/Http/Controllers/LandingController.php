@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Review;
@@ -20,12 +21,28 @@ class LandingController extends Controller
                 return redirect('dashboard');
             }
         }
-
-        // If not an admin or user is not authenticated, show landing page
-        $products = Product::where('name','LIKE','%'.$request->search.'%')->paginate(4);
+    
+        $query = Product::query();
+    
+        // Apply search filter
+        if ($request->has('search')) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+    
+        // Apply category filter
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+    
+        // Retrieve paginated products
+        $products = $query->paginate(4);
+    
         $reviews = Review::all();
         $sosmeds = Sosmed::all();
         $carousels = Carousel::orderBy('created_at', 'desc')->paginate(1);
-        return view('landing', compact('products','reviews','carousels','sosmeds'));
+        $categories = Category::all();
+    
+        return view('landing', compact('products', 'reviews', 'carousels', 'sosmeds', 'categories'));
     }
+    
 }

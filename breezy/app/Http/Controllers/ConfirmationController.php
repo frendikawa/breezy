@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPayment;
 use App\Models\Payment;
 
 class ConfirmationController extends Controller
 {
     public function index()
     {
-        $confirms = Payment::where('status', 'Menunggu konfirmasi')->latest()->paginate(5);
+        $confirms = Payment::query()->with('detailPayments')->whereHas('detailPayments')->where('status', 'Menunggu konfirmasi')->latest()
+            ->paginate(5);
+        // dd($confirms);
         return view('admin.confirmation', compact('confirms'));
     }
 

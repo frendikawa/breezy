@@ -85,11 +85,11 @@ class CartController extends Controller
         $total = 0;
         foreach ($request->quantities as $index => $quantity) {
             $cart = Cart::find($request->cart_ids[$index]);
-            $stock=$cart->product->stock;
+            $stock = $cart->product->stock;
             $request->validate([
-                'quantities.*'=>'numeric|max:'.$stock
-            ],[
-                'quantities.*.max'=>'stok tidak cukup'
+                'quantities.*' => 'numeric|max:' . $stock
+            ], [
+                'quantities.*.max' => 'stok tidak cukup'
             ]);
             // Update cart quantity
             $cart->update(['quantity' => $quantity]);
@@ -97,21 +97,26 @@ class CartController extends Controller
 
             // Update status to 'beli'
             $cart->update(['status' => 'beli']);
-
-            // Create payment
-            $file = $request->file('proof');
-            $bukti = Str::random(20) . '.' . $file->getClientOriginalExtension();
-
-            Payment::create([
-                'cart_id' => $cart->id,
-                'total' => $total,
-                'proof' => $bukti,
-                'address' => $request->address
-            ]);
-
-            // Store payment proof
-            Storage::disk('public')->put($bukti, file_get_contents($file));
         }
+
+        // Create payment
+        $file = $request->file('proof');
+        $bukti = Str::random(20) . '.' . $file->getClientOriginalExtension();
+
+        $payment = Payment::create([
+            'user_id'=>auth()->user()->id,
+            'total' => $total,
+            'proof' => $bukti,
+            'address' => $request->address
+        ]);
+        foreach ($request->cart_ids as $cart_id) {
+            $payment->detailPayments()->create([
+                'cart_id' => $cart_id
+            ]);
+        }
+
+        // Store payment proof
+        Storage::disk('public')->put($bukti, file_get_contents($file));
 
         return redirect()->back()->with('success', 'Order successful, please wait for confirmation.');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\ProductChart;
 use App\Models\Carousel;
 use App\Models\Sosmed;
 use Illuminate\Http\Request;

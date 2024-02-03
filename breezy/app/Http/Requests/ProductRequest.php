@@ -20,7 +20,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'photo' => 'nullable|mimes:png,jpg,jpeg|image',
+            'photo' => 'nullable|mimes:png,jpg,jpeg',
             'description' => 'required',
             'price' => 'required|numeric|min:1000', // Harga harus numeric dan tidak boleh kurang dari 0
             'category_id' => 'not_in:""',

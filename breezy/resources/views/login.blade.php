@@ -30,10 +30,6 @@
                     <input type="password" class="form-control " id="floatingInput" name="password" placeholder="password">
                     <label for="floatingInput">Password</label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="remember">Ingatkan saya</label>
-                </div>
                 <div class="row mt-5">
                     <button type="submit" class="btn btn-primary">
                         {{ __('Login') }}

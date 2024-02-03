@@ -99,9 +99,16 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Cari.." name='search'
                             value="{{ request()->search }}">
+                            <select name="category" class="form-control">
+                                <option value="" selected disabled>Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
+                            <button type="submit" class="input-group-text bg-transparent text-primary"><i class="fa fa-search"></i></button>
+                            <span >
+                                
                             </span>
                         </div>
                     </div>

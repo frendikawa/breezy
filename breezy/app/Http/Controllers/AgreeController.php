@@ -8,7 +8,7 @@ class AgreeController extends Controller
 {
     public function index()
     {
-        $agrees = Payment::where('status', 'diterima')->latest()->paginate(5);
+        $agrees = Payment::query()->with('detailPayments')->whereHas('detailPayments')->where('status', 'diterima')->latest()->paginate(5);
         return view('admin.agree', compact('agrees'));
     }
 

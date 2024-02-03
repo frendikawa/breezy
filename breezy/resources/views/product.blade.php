@@ -4,17 +4,27 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Produk
-                Kami </span><form action="" style="padding-right: 10px">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari.." name='search'
-                            value="{{ request()->search }}">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
+                Kami </span>
+            <form action="" style="padding-right: 10px">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari.." name='search'
+                        value="{{ request()->search }}">
+                    <select name="category" class="form-control">
+                        <option value="" selected disabled>Kategori
+
+                        </option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
-                </form></h2>
+                </div>
+            </form>
+        </h2>
         <div class="row px-xl-5">
             @foreach ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -23,8 +33,8 @@
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $product->photo) }}" alt="">
                             <div class="product-action show-on-hover">
                                 @if (Auth::check() && Auth()->user()->role == 'admin')
-                                    <button type="button" class="btn btn-outline-dark btn-square mx-1" data-bs-toggle="modal"
-                                        data-bs-target="#update{{ $product->id }}">
+                                    <button type="button" class="btn btn-outline-dark btn-square mx-1"
+                                        data-bs-toggle="modal" data-bs-target="#update{{ $product->id }}">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                     <button type="button" class="btn btn-outline-dark btn-square mx-1"
@@ -38,15 +48,15 @@
                                     <i class="fa fa-eye"></i>
                                 </button>
                                 @if (Auth::check() && Auth()->user()->role == 'user')
-                                <form action="{{ route('troli.store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}">
-                                    <input type="hidden" name="quantity" id="" value="1">      
-                                    <button type="submit" class="btn btn-outline-dark btn-square">
-                                        <i class="fa fa-shopping-cart"></i></a>
-                                    </button>
-                                </form>
+                                    <form action="{{ route('troli.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="hidden" name="user_id" value="{{ Auth()->user()->id }}">
+                                        <input type="hidden" name="quantity" id="" value="1">
+                                        <button type="submit" class="btn btn-outline-dark btn-square">
+                                            <i class="fa fa-shopping-cart"></i></a>
+                                        </button>
+                                    </form>
                                 @endif
                             </div>
                         </div>
@@ -67,30 +77,29 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="delete{{ $product->id }}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="delete{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Konfirmasi hapus</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                                </div>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
+                            </div>
+                            <form action="{{ route('product.destroy', $product->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
                                 <div class="modal-body">
                                     Apakah anda yakin ingin menghapus {{ $product->name }}?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary"
-                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
                                     <button type="submit" class="btn btn-danger">Yakin</button>
                                 </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
+                </div>
 
                 <div class="modal fade" id="detail{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -102,25 +111,26 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                    <div class="card-body d-flex align-items-center">
-                                        <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="300"
-                                            class="mr-5">
-                                        <div class="text">
-                                            <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
-                                            <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
-                                            <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}</p>
-                                            <p><b class="text-primary">Harga:</b> Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
-                                            <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
-                                        </div>
+                                <div class="card-body d-flex align-items-center">
+                                    <img src="{{ asset('storage/' . $product->photo) }}" alt="" width="300"
+                                        class="mr-5">
+                                    <div class="text">
+                                        <p><b class="text-primary">Nama:</b> {{ $product->name }}</p>
+                                        <p><b class="text-primary">Deskripsi:</b> {{ $product->description }}</p>
+                                        <p><b class="text-primary">Kategori:</b> {{ $product->category->name }}</p>
+                                        <p><b class="text-primary">Harga:</b>
+                                            Rp.{{ number_format($product->price, 0, ',', '.') }}</p>
+                                        <p><b class="text-primary">Stok:</b> {{ $product->stock }}</p>
                                     </div>
+                                </div>
                             </div>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="update{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="update{{ $product->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -196,10 +206,10 @@
                                                     name="category_id" aria-label="Default select example">
                                                     <option selected>- Kategori -</option>
                                                     @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}"
-                                                        {{ $product->category_id == $category->id ? 'selected' : '' }}>
-                                                        {{ $category->name }}</option>
-                                                @endforeach
+                                                        <option value="{{ $category->id }}"
+                                                            {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                                            {{ $category->name }}</option>
+                                                    @endforeach
                                                 </select>
                                                 <label for="category_id">Kategori</label>
                                                 @error('category_id')
