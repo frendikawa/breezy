@@ -16,7 +16,8 @@ class CategoryRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'unique:categories,name,except,id'
+                'unique:categories,name,except,id',
+                'max:255'
             ]
         ];
     }
@@ -26,6 +27,7 @@ class CategoryRequest extends FormRequest
         return [
             'name.required' => 'Nama kategori harus diisi',
             'name.unique' => 'Nama kategori sudah tersedia',
+            'name.max' => 'Nama kategori terlalu panjang',
         ];
     }
 }

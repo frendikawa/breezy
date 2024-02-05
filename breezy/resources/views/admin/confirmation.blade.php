@@ -114,7 +114,9 @@
                                                         <p>Jumlah yang dibeli: {{ $detailPayment->cart->quantity }}</p>
                                                     </div>
                                                 @endforeach
-                                            </div>
+                                                <div class="text mx-4 my-3">
+                                                    <p>Total harga:{{ number_format($item->total, 0, ',', '.') }}</p>
+                                                </div>                                            </div>
                                         </div>
                                     </div>
                                     <div class="flex items-center p-4 md:p-5 rounded-b">

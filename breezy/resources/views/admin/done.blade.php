@@ -91,12 +91,16 @@
                                                     <div class="text mx-4 my-3">
                                                         <h4 class="font-semibold text-gray-900 dark:text-white">
                                                             {{ $detailPayment->cart->product->name }}</h4>
-                                                        <p>Harga satuan: Rp.
-                                                            {{ number_format($detailPayment->cart->product->price, 0, ',', '.') }}
-                                                        </p>
-                                                        <p>Jumlah yang dibeli: {{ $detailPayment->cart->quantity }}</p>
-                                                    </div>
-                                                @endforeach
+                                                            <p>Harga satuan: Rp.
+                                                                {{ number_format($detailPayment->cart->product->price, 0, ',', '.') }}
+                                                            </p>
+                                                            <p>Jumlah yang dibeli: {{ $detailPayment->cart->quantity }}</p>
+                                                        </div>
+                                                        @endforeach
+                                                        <div class="text mx-4 my-3">
+                                                            <p>Total harga:{{ number_format($item->total, 0, ',', '.') }}</p>
+                                                        </div>
+
                                             </div>
                                         </div>
                                     </div>

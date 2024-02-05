@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\DoneController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PaymentController;
@@ -56,6 +57,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::resource('product',ProductController::class);
     Route::resource('category',CategoryController::class);
     Route::resource('review',ReviewController::class);
+    route::get('history',[HistoryController::class,'index'])->name('history');
     
     Route::middleware(['admin'])->group(function () {
         Route::resource('dashboard',CarouselController::class);

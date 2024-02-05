@@ -18,12 +18,7 @@ class ReviewController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-        $products = Payment::where('status', 'selesai')
-            ->whereHas('cart', function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })
-            ->paginate(4);
-
+        $products = Payment::query()->with('detailPayments')->whereHas('detailPayments')->where('status', 'Selesai')->latest()->paginate(4);
         return view('review', compact('products'));
     }
 
@@ -41,14 +36,14 @@ class ReviewController extends Controller
     public function store(ReviewStoreRequest $request)
     {
 
-        
-        $review=Review::create([
-            'user_id'=>auth()->user()->id,
-            'product_id'=>$request->product_id,
-            'review'=>$request->review,
-            'rating'=>$request->rating
+
+        $review = Review::create([
+            'user_id' => auth()->user()->id,
+            'product_id' => $request->product_id,
+            'review' => $request->review,
+            'rating' => $request->rating
         ]);
-        return redirect()->back()->with('success','Berhasil mengulas produk');
+        return redirect()->back()->with('success', 'Berhasil mengulas produk');
     }
 
     /**

@@ -94,6 +94,7 @@
                                             @method('PUT')
                                             <div class="d-flex flex-column mt-3">
                                                 <label for="photo" class="mb-1">Foto produk</label>
+                                                <img src="{{asset('storage/'.$item->photo)}}" alt="" class="img-fluid w-50 mb-3 justify-content-center">
                                                 <input type="file" class=" @error('photo') is-invalid @enderror rounded-lg" id="floatingInput" placeholder="photo" name="photo"
                                                     value="{{ old('photo') }}">
                                                 @error('photo')

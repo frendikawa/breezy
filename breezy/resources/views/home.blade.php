@@ -167,12 +167,19 @@
                                 <h5>Rp.{{ number_format($product->price, 0, ',', '.') }}</h5>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
+                                @php
+                                    $averageRating = $product->reviews->avg('rating');
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $averageRating)
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                    @else
+                                        <small class="fa fa-star text-muted mr-1"></small>
+                                    @endif
+                                @endfor
+
+                                <small>({{ $product->reviews->count() }})</small>
                             </div>
                         </div>
                     </div>

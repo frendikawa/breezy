@@ -1,15 +1,20 @@
 @extends('main')
 @section('content')
-<section class="vh-100" style="background-color: #ffffff;">
-    <div class="container h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-md-9 col-lg-7 col-xl-5">
-                <div class="card shadow-lg" style="border-radius: 15px; background-color: #ffffff;">
+    <section class="vh-100" style="background-color: #ffffff;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-md-9 col-lg-7 col-xl-5">
+                    <div class="card shadow-lg" style="border-radius: 15px; background-color: #ffffff;">
                         <div class="card-body p-4">
                             <div class="d-flex text-black">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ asset('storage/' . $user->photo) }}" alt="Generic placeholder image"
-                                        class="img-fluid" style="width: 180px; border-radius: 10px;">
+                                    @if ($user->photo)
+                                <img src="{{ asset('storage/' . $user->photo) }}" alt="" height="45"
+                                    width="45" class="rounded-circle overflow-hidden">
+                            @else
+                                <i class="fa-solid fa-circle-user"
+                                    style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                            @endif
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="mb-1">{{ $user->name }}</h5>
@@ -62,6 +67,13 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Foto Profil</label>
+                            @if ($user->photo)
+                                <img src="{{ asset('storage/' . $user->photo) }}" alt="" height="45"
+                                    width="45" class="rounded-circle overflow-hidden">
+                            @else
+                                <i class="fa-solid fa-circle-user"
+                                    style="font-size: 25px; position: relative; top:3px; left: 3px"></i>
+                            @endif
                             <input type="file" name="photo" id="" class="form-control">
                         </div>
 

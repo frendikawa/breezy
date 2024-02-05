@@ -99,7 +99,7 @@
                     @endphp
 
                     <label for="" class="form-label mt-3">Total Harga: <span
-                            id="totalPrice">{{ $totalPrice }}</span></label>
+                            id="totalPrice">{{ number_format($totalPrice, 0, ',', '.') }}</span></label>
                     <div class="mb-3">
                         <label for="proof">Upload bukti pembayaran</label>
                         <input type="file" name="proof" id="proof" class="form-control">
@@ -109,10 +109,11 @@
                         <label for="" class="form-label" name='address'>Alamat</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary rounded mt-3 justify-content-end">
-                        <i class="fa fa-dollar"></i> Checkout
-                    </button>
+                    <a href="{{route('history')}}" class="btn btn-link">Status pesanan</a>
                 </div>
+                <button type="submit" class="btn btn-primary rounded mt-3 justify-content-end">
+                    <i class="fa fa-dollar"></i> Checkout
+                </button>
             </div>
         </form>
     </div>

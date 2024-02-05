@@ -20,6 +20,8 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
+        $keyword = $request->search;
+        $kategori = $request->category;
         // Search by product name
         if ($request->has('search')) {
             $query->where('name', 'LIKE', '%' . $request->search . '%');
@@ -38,7 +40,7 @@ class ProductController extends Controller
         if (auth()->user()->role == 'admin') {
             return view('admin.product', compact('products', 'categories'));
         } else if (auth()->user()->role == 'user') {
-            return view('product', compact('products', 'categories'));
+            return view('product', compact('products', 'categories', 'keyword','kategori'));
         }
     }
 

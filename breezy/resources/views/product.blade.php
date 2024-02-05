@@ -8,15 +8,15 @@
             <form action="" style="padding-right: 10px">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari.." name='search'
-                        value="{{ request()->search }}">
-                    <select name="category" class="form-control">
-                        <option value="" selected disabled>Kategori
-
-                        </option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
+                    value="{{ $keyword }}">
+                        <select name="category" class="form-control">
+                            <option value="" selected disabled>Kategori</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ $kategori == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     <div class="input-group-append">
                         <button type="submit" class="input-group-text bg-transparent text-primary">
                             <i class="fa fa-search"></i>
@@ -66,12 +66,19 @@
                                 <h5>Rp.{{ number_format($product->price, 0, ',', '.') }}</h5>
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small class="fa fa-star text-primary mr-1"></small>
-                                <small>(99)</small>
+                                @php
+                                    $averageRating = $product->reviews->avg('rating');
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $averageRating)
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                    @else
+                                        <small class="fa fa-star text-muted mr-1"></small>
+                                    @endif
+                                @endfor
+
+                                <small>({{ $product->reviews->count() }})</small>
                             </div>
                         </div>
                     </div>
